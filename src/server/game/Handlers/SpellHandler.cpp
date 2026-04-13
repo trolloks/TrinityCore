@@ -532,7 +532,11 @@ void WorldSession::HandleMirrorImageDataRequest(WorldPacket& recvData)
             else if (*itr == EQUIPMENT_SLOT_BACK && player->HasFlag(PLAYER_FLAGS, PLAYER_FLAGS_HIDE_CLOAK))
                 data << uint32(0);
             else if (Item const* item = player->GetItemByPos(INVENTORY_SLOT_BAG_0, *itr))
-                data << uint32(item->GetTemplate()->GetDisplayID());
+            {
+                uint32 display = item->GetTemplate()->GetDisplayID();
+                sScriptMgr->OnMirrorImageDisplayItem(item, display);
+                data << uint32(display);
+            }
             else
                 data << uint32(0);
         }

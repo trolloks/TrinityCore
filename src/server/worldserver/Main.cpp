@@ -45,6 +45,7 @@
 #include "Resolver.h"
 #include "ScriptLoader.h"
 #include "ScriptMgr.h"
+#include "ModulesScriptLoader.h"
 #include "ScriptReloadMgr.h"
 #include "SecretMgr.h"
 #include "SharedDefines.h"
@@ -294,6 +295,7 @@ extern int main(int argc, char** argv)
     });
 
     sScriptMgr->SetScriptLoader(AddScripts);
+    sScriptMgr->SetModulesLoader(AddModulesScripts);
     std::shared_ptr<void> sScriptMgrHandle(nullptr, [](void*)
     {
         sScriptMgr->Unload();

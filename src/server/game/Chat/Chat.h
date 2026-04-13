@@ -58,6 +58,7 @@ class TC_GAME_API ChatHandler
         // function with different implementation for chat/console
         virtual char const* GetTrinityString(uint32 entry) const;
         virtual void SendSysMessage(char const* str, bool escapeCharacters = false);
+        void SendSysMessage(std::string const& str, bool escapeCharacters = false) { SendSysMessage(str.c_str(), escapeCharacters); }
 
         void SendSysMessage(uint32 entry);
 

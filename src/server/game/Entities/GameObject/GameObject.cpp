@@ -45,6 +45,7 @@
 #include "SpellMgr.h"
 #include "Transport.h"
 #include "UpdateFieldFlags.h"
+#include "ScriptMgr.h"
 #include "World.h"
 #include <G3D/Box.h>
 #include <G3D/CoordinateFrame.h>
@@ -590,6 +591,7 @@ void GameObject::AddToWorld()
 
         EnableCollision(toggledState);
         WorldObject::AddToWorld();
+        sScriptMgr->OnGameObjectAddWorld(this);
     }
 }
 
@@ -615,6 +617,7 @@ void GameObject::RemoveFromWorld()
         if (m_spawnId)
             Trinity::Containers::MultimapErasePair(GetMap()->GetGameObjectBySpawnIdStore(), m_spawnId, this);
         GetMap()->GetObjectsStore().Remove<GameObject>(GetGUID());
+        sScriptMgr->OnGameObjectRemoveWorld(this);
     }
 }
 
@@ -1240,6 +1243,8 @@ void GameObject::Update(uint32 diff)
             break;
         }
     }
+
+    sScriptMgr->OnGameObjectUpdate(this, diff);
 }
 
 void GameObject::Refresh()

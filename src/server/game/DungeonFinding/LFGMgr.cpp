@@ -37,6 +37,7 @@
 #include "Player.h"
 #include "Map.h"
 #include "RBAC.h"
+#include "ScriptMgr.h"
 #include "SharedDefines.h"
 #include "SocialMgr.h"
 #include "World.h"
@@ -1837,10 +1838,12 @@ LfgLockMap const LFGMgr::GetLockedDungeons(ObjectGuid guid)
         lockData = LFG_LOCKSTATUS_ATTUNEMENT_TOO_HIGH_LEVEL;
         */
 
+        sScriptMgr->OnInitializeLockedDungeons(player, level, lockStatus);
         if (lockStatus)
             lock[dungeon->Entry()] = LfgLockInfoData(lockStatus, dungeon->requiredItemLevel, player->GetAverageItemLevel());
     }
 
+    sScriptMgr->OnAfterInitializeLockedDungeons(player);
     return lock;
 }
 

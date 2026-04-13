@@ -49,6 +49,7 @@
 #include "QueryPackets.h"
 #include "QuestDef.h"
 #include "ScriptedGossip.h"
+#include "ScriptMgr.h"
 #include "SpellAuraEffects.h"
 #include "SpellMgr.h"
 #include "TemporarySummon.h"
@@ -318,6 +319,8 @@ void Creature::AddToWorld()
 
         if (GetZoneScript())
             GetZoneScript()->OnCreatureCreate(this);
+
+        sScriptMgr->OnCreatureAddWorld(this);
     }
 }
 
@@ -338,6 +341,7 @@ void Creature::RemoveFromWorld()
 
         TC_LOG_DEBUG("entities.unit", "Removing creature %u with entry %u and DBGUID %u to world in map %u", GetGUID().GetCounter(), GetEntry(), m_spawnId, GetMap()->GetId());
         GetMap()->GetObjectsStore().Remove<Creature>(GetGUID());
+        sScriptMgr->OnCreatureRemoveWorld(this);
     }
 }
 
@@ -843,6 +847,8 @@ void Creature::Update(uint32 diff)
         default:
             break;
     }
+
+    sScriptMgr->OnAllCreatureUpdate(this, diff);
 }
 
 void Creature::Heartbeat()

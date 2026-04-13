@@ -16,6 +16,22 @@
  */
 
 #include "ScriptMgr.h"
+#include "ScriptDefines/AllCreatureScript.h"
+#include "ScriptDefines/AllGameObjectScript.h"
+#include "ScriptDefines/AllItemScript.h"
+#include "ScriptDefines/AllMapScript.h"
+#include "ScriptDefines/AllSpellScript.h"
+#include "ScriptDefines/AllBattlegroundScript.h"
+#include "ScriptDefines/AllCommandScript.h"
+#include "ScriptDefines/GlobalScript.h"
+#include "ScriptDefines/ModuleScript.h"
+#include "ScriptDefines/PetScript.h"
+#include "ScriptDefines/ArenaScript.h"
+#include "ScriptDefines/GameEventScript.h"
+#include "ScriptDefines/MailScript.h"
+#include "ScriptDefines/LootScript.h"
+#include "ScriptDefines/WorldObjectScript.h"
+#include "ArenaTeam.h"
 #include "Chat.h"
 #include "Config.h"
 #include "Creature.h"
@@ -26,6 +42,8 @@
 #include "InstanceScript.h"
 #include "Item.h"
 #include "LFGScripts.h"
+#include "Loot.h"
+#include "LootMgr.h"
 #include "Log.h"
 #include "Map.h"
 #include "MapManager.h"
@@ -35,6 +53,7 @@
 #include "ScriptReloadMgr.h"
 #include "ScriptSystem.h"
 #include "SmartAI.h"
+#include "SpellAuraEffects.h"
 #include "SpellInfo.h"
 #include "SpellMgr.h"
 #include "SpellScript.h"
@@ -1012,7 +1031,7 @@ struct TSpellSummary
     uint8 Effects;                                          // set of enum SelectEffect
 } *SpellSummary;
 
-ScriptObject::ScriptObject(char const* name) : _name(name)
+ScriptObject::ScriptObject(char const* name, uint16 totalAvailableHooks) : _name(name), _totalAvailableHooks(totalAvailableHooks)
 {
     sScriptMgr->IncreaseScriptCount();
 }
@@ -1023,7 +1042,7 @@ ScriptObject::~ScriptObject()
 }
 
 ScriptMgr::ScriptMgr()
-  : _scriptCount(0), _script_loader_callback(nullptr)
+  : _scriptCount(0), _script_loader_callback(nullptr), _modules_loader_callback(nullptr)
 {
 }
 
@@ -1065,6 +1084,10 @@ void ScriptMgr::Initialize()
            "Script loader callback wasn't registered!");
 
     _script_loader_callback();
+
+    // Load all module scripts (from modules/ directory)
+    if (_modules_loader_callback)
+        _modules_loader_callback();
 
     // Initialize all dynamic scripts
     // and finishes the context switch to do
@@ -1330,7 +1353,10 @@ void ScriptMgr::OnOpenStateChange(bool open)
 
 void ScriptMgr::OnConfigLoad(bool reload)
 {
+    // Fire ACore-compat before/after split hooks first
+    FOREACH_SCRIPT(WorldScript)->OnBeforeConfigLoad(reload);
     FOREACH_SCRIPT(WorldScript)->OnConfigLoad(reload);
+    FOREACH_SCRIPT(WorldScript)->OnAfterConfigLoad(reload);
 }
 
 void ScriptMgr::OnMotdChange(std::string& newMotd)
@@ -1412,6 +1438,8 @@ void ScriptMgr::OnCreateMap(Map* map)
 {
     ASSERT(map);
 
+    FOREACH_SCRIPT(AllMapScript)->OnCreateMap(map);
+
     SCR_MAP_BGN(WorldMapScript, map, itr, end, entry, IsWorldMap);
         itr->second->OnCreate(map);
     SCR_MAP_END;
@@ -1428,6 +1456,8 @@ void ScriptMgr::OnCreateMap(Map* map)
 void ScriptMgr::OnDestroyMap(Map* map)
 {
     ASSERT(map);
+
+    FOREACH_SCRIPT(AllMapScript)->OnDestroyMap(map);
 
     SCR_MAP_BGN(WorldMapScript, map, itr, end, entry, IsWorldMap);
         itr->second->OnDestroy(map);
@@ -1448,6 +1478,7 @@ void ScriptMgr::OnPlayerEnterMap(Map* map, Player* player)
     ASSERT(player);
 
     FOREACH_SCRIPT(PlayerScript)->OnMapChanged(player);
+    FOREACH_SCRIPT(AllMapScript)->OnPlayerEnterAll(map, player);
 
     SCR_MAP_BGN(WorldMapScript, map, itr, end, entry, IsWorldMap);
         itr->second->OnPlayerEnter(map, player);
@@ -1467,6 +1498,8 @@ void ScriptMgr::OnPlayerLeaveMap(Map* map, Player* player)
     ASSERT(map);
     ASSERT(player);
 
+    FOREACH_SCRIPT(AllMapScript)->OnPlayerLeaveAll(map, player);
+
     SCR_MAP_BGN(WorldMapScript, map, itr, end, entry, IsWorldMap);
         itr->second->OnPlayerLeave(map, player);
     SCR_MAP_END;
@@ -1483,6 +1516,8 @@ void ScriptMgr::OnPlayerLeaveMap(Map* map, Player* player)
 void ScriptMgr::OnMapUpdate(Map* map, uint32 diff)
 {
     ASSERT(map);
+
+    FOREACH_SCRIPT(AllMapScript)->OnMapUpdate(map, diff);
 
     SCR_MAP_BGN(WorldMapScript, map, itr, end, entry, IsWorldMap);
         itr->second->OnUpdate(map, diff);
@@ -1561,13 +1596,313 @@ CreatureAI* ScriptMgr::GetCreatureAI(Creature* creature)
 {
     ASSERT(creature);
 
+    // Allow AllCreatureScript to override AI first
+    if (CreatureAI* ai = GetCreatureAIOverride(creature))
+        return ai;
+
     GET_SCRIPT_RET(CreatureScript, creature->GetScriptId(), tmpscript, nullptr);
     return tmpscript->GetAI(creature);
+}
+
+// AllCreatureScript dispatch
+void ScriptMgr::OnAllCreatureUpdate(Creature* creature, uint32 diff)
+{
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->OnAllCreatureUpdate(creature, diff);
+}
+
+void ScriptMgr::OnCreatureAddWorld(Creature* creature)
+{
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->OnCreatureAddWorld(creature);
+}
+
+void ScriptMgr::OnCreatureRemoveWorld(Creature* creature)
+{
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->OnCreatureRemoveWorld(creature);
+}
+
+void ScriptMgr::OnBeforeCreatureSelectLevel(CreatureTemplate const* cinfo, Creature* creature, uint8& level)
+{
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->OnBeforeCreatureSelectLevel(cinfo, creature, level);
+}
+
+void ScriptMgr::OnCreatureSelectLevel(CreatureTemplate const* cinfo, Creature* creature)
+{
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->OnCreatureSelectLevel(cinfo, creature);
+}
+
+bool ScriptMgr::CanCreatureGossipHello(Player* player, Creature* creature)
+{
+    ASSERT(player);
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->CanCreatureGossipHello(player, creature);
+    return false;
+}
+
+bool ScriptMgr::CanCreatureGossipSelect(Player* player, Creature* creature, uint32 sender, uint32 action)
+{
+    ASSERT(player);
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->CanCreatureGossipSelect(player, creature, sender, action);
+    return false;
+}
+
+bool ScriptMgr::CanCreatureGossipSelectCode(Player* player, Creature* creature, uint32 sender, uint32 action, char const* code)
+{
+    ASSERT(player);
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->CanCreatureGossipSelectCode(player, creature, sender, action, code);
+    return false;
+}
+
+bool ScriptMgr::CanCreatureQuestAccept(Player* player, Creature* creature, Quest const* quest)
+{
+    ASSERT(player);
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->CanCreatureQuestAccept(player, creature, quest);
+    return false;
+}
+
+bool ScriptMgr::CanCreatureQuestReward(Player* player, Creature* creature, Quest const* quest, uint32 opt)
+{
+    ASSERT(player);
+    ASSERT(creature);
+    FOREACH_SCRIPT(AllCreatureScript)->CanCreatureQuestReward(player, creature, quest, opt);
+    return false;
+}
+
+CreatureAI* ScriptMgr::GetCreatureAIOverride(Creature* creature)
+{
+    ASSERT(creature);
+    FOR_SCRIPTS(AllCreatureScript, itr, end)
+    {
+        if (CreatureAI* ai = itr->second->GetCreatureAI(creature))
+            return ai;
+    }
+    return nullptr;
+}
+
+// AllGameObjectScript dispatch
+GameObjectAI* ScriptMgr::GetGameObjectAIOverride(GameObject* go)
+{
+    ASSERT(go);
+    FOR_SCRIPTS(AllGameObjectScript, itr, end)
+    {
+        if (GameObjectAI* ai = itr->second->GetGameObjectAI(go))
+            return ai;
+    }
+    return nullptr;
+}
+
+void ScriptMgr::OnGameObjectAddWorld(GameObject* go)
+{
+    ASSERT(go);
+    FOREACH_SCRIPT(AllGameObjectScript)->OnGameObjectAddWorld(go);
+}
+
+void ScriptMgr::OnGameObjectRemoveWorld(GameObject* go)
+{
+    ASSERT(go);
+    FOREACH_SCRIPT(AllGameObjectScript)->OnGameObjectRemoveWorld(go);
+}
+
+void ScriptMgr::OnGameObjectUpdate(GameObject* go, uint32 diff)
+{
+    ASSERT(go);
+    FOREACH_SCRIPT(AllGameObjectScript)->OnGameObjectUpdate(go, diff);
+}
+
+// AllItemScript dispatch
+bool ScriptMgr::CanItemQuestAccept(Player* player, Item* item, Quest const* quest)
+{
+    ASSERT(player);
+    FOREACH_SCRIPT(AllItemScript)->CanItemQuestAccept(player, item, quest);
+    return true;
+}
+
+bool ScriptMgr::CanItemUse(Player* player, Item* item, SpellCastTargets const& targets)
+{
+    ASSERT(player);
+    FOREACH_SCRIPT(AllItemScript)->CanItemUse(player, item, targets);
+    return false;
+}
+
+bool ScriptMgr::CanItemExpire(Player* player, ItemTemplate const* proto)
+{
+    ASSERT(player);
+    FOREACH_SCRIPT(AllItemScript)->CanItemExpire(player, proto);
+    return true;
+}
+
+bool ScriptMgr::CanItemRemove(Player* player, Item* item)
+{
+    ASSERT(player);
+    FOREACH_SCRIPT(AllItemScript)->CanItemRemove(player, item);
+    return true;
+}
+
+// AllSpellScript dispatch
+void ScriptMgr::OnCalcMaxDuration(Aura const* aura, int32& maxDuration)
+{
+    FOREACH_SCRIPT(AllSpellScript)->OnCalcMaxDuration(aura, maxDuration);
+}
+
+void ScriptMgr::OnAllSpellCheckCast(Spell* spell, bool strict, SpellCastResult& res)
+{
+    FOREACH_SCRIPT(AllSpellScript)->OnSpellCheckCast(spell, strict, res);
+}
+
+bool ScriptMgr::CanPrepareAllSpell(Spell* spell, SpellCastTargets const* targets, AuraEffect const* triggeredByAura)
+{
+    FOREACH_SCRIPT(AllSpellScript)->CanPrepare(spell, targets, triggeredByAura);
+    return true;
+}
+
+void ScriptMgr::OnAllSpellCast(Spell* spell, Unit* caster, SpellInfo const* spellInfo, bool skipCheck)
+{
+    FOREACH_SCRIPT(AllSpellScript)->OnSpellCast(spell, caster, spellInfo, skipCheck);
+}
+
+void ScriptMgr::OnAllSpellPrepare(Spell* spell, Unit* caster, SpellInfo const* spellInfo)
+{
+    FOREACH_SCRIPT(AllSpellScript)->OnSpellPrepare(spell, caster, spellInfo);
+}
+
+// GlobalScript dispatch
+void ScriptMgr::OnItemDelFromDB(CharacterDatabaseTransaction trans, ObjectGuid::LowType itemGuid)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnItemDelFromDB(trans, itemGuid);
+}
+
+void ScriptMgr::OnMirrorImageDisplayItem(Item const* item, uint32& display)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnMirrorImageDisplayItem(item, display);
+}
+
+void ScriptMgr::OnAfterRefCount(Player const* player, LootStoreItem* lootStoreItem, Loot& loot, bool canRate, uint16 lootMode, uint32& maxcount, LootStore const& store)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnAfterRefCount(player, lootStoreItem, loot, canRate, lootMode, maxcount, store);
+}
+
+void ScriptMgr::OnAfterCalculateLootGroupAmount(Player const* player, Loot& loot, uint16 lootMode, uint32& groupAmount, LootStore const& store)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnAfterCalculateLootGroupAmount(player, loot, lootMode, groupAmount, store);
+}
+
+void ScriptMgr::OnBeforeDropAddItem(Player const* player, Loot& loot, bool canRate, uint16 lootMode, LootStoreItem* lootStoreItem, LootStore const& store)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnBeforeDropAddItem(player, loot, canRate, lootMode, lootStoreItem, store);
+}
+
+bool ScriptMgr::OnItemRoll(Player const* player, LootStoreItem const* lootStoreItem, float& chance, Loot& loot, LootStore const& store)
+{
+    bool ret = true;
+    FOR_SCRIPTS(GlobalScript, itr, end)
+        if (!itr->second->OnItemRoll(player, lootStoreItem, chance, loot, store))
+            ret = false;
+    return ret;
+}
+
+bool ScriptMgr::OnBeforeLootEqualChanced(Player const* player, std::list<LootStoreItem*> equalChanced, Loot& loot, LootStore const& store)
+{
+    bool ret = true;
+    FOR_SCRIPTS(GlobalScript, itr, end)
+        if (!itr->second->OnBeforeLootEqualChanced(player, equalChanced, loot, store))
+            ret = false;
+    return ret;
+}
+
+void ScriptMgr::OnInitializeLockedDungeons(Player* player, uint8& level, uint32& lockData)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnInitializeLockedDungeons(player, level, lockData);
+}
+
+void ScriptMgr::OnAfterInitializeLockedDungeons(Player* player)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnAfterInitializeLockedDungeons(player);
+}
+
+void ScriptMgr::OnBeforeUpdateArenaPoints(ArenaTeam* at, std::map<ObjectGuid, uint32>& ap)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnBeforeUpdateArenaPoints(at, ap);
+}
+
+void ScriptMgr::OnAfterUpdateEncounterState(Map* map, uint8 creditType, uint32 creditEntry, Unit* source, Difficulty difficulty,
+    std::list<DungeonEncounter const*> const* encounters, uint32 dungeonCompleted, bool updated)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnAfterUpdateEncounterState(map, creditType, creditEntry, source, difficulty, encounters, dungeonCompleted, updated);
+}
+
+void ScriptMgr::OnBeforeWorldObjectSetPhaseMask(WorldObject const* worldObject, uint32& oldPhaseMask, uint32& newPhaseMask, bool& useCombinedPhases, bool& update)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnBeforeWorldObjectSetPhaseMask(worldObject, oldPhaseMask, newPhaseMask, useCombinedPhases, update);
+}
+
+bool ScriptMgr::OnIsAffectedBySpellModCheck(SpellInfo const* affectSpell, SpellInfo const* checkSpell, SpellModifier const* mod)
+{
+    bool ret = true;
+    FOR_SCRIPTS(GlobalScript, itr, end)
+        if (!itr->second->OnIsAffectedBySpellModCheck(affectSpell, checkSpell, mod))
+            ret = false;
+    return ret;
+}
+
+bool ScriptMgr::OnSpellHealingBonusTakenNegativeModifiers(Unit const* target, Unit const* caster, SpellInfo const* spellInfo, float& val)
+{
+    bool ret = false;
+    FOR_SCRIPTS(GlobalScript, itr, end)
+        if (itr->second->OnSpellHealingBonusTakenNegativeModifiers(target, caster, spellInfo, val))
+            ret = true;
+    return ret;
+}
+
+void ScriptMgr::OnLoadSpellCustomAttr(SpellInfo* spell)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnLoadSpellCustomAttr(spell);
+}
+
+bool ScriptMgr::OnAllowedForPlayerLootCheck(Player const* player, ObjectGuid source)
+{
+    FOR_SCRIPTS(GlobalScript, itr, end)
+        if (itr->second->OnAllowedForPlayerLootCheck(player, source))
+            return true;
+    return false;
+}
+
+bool ScriptMgr::OnAllowedToLootContainerCheck(Player const* player, ObjectGuid source)
+{
+    FOR_SCRIPTS(GlobalScript, itr, end)
+        if (itr->second->OnAllowedToLootContainerCheck(player, source))
+            return true;
+    return false;
+}
+
+void ScriptMgr::OnInstanceIdRemoved(uint32 instanceId)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnInstanceIdRemoved(instanceId);
+}
+
+void ScriptMgr::OnBeforeSetBossState(uint32 id, uint32 newState, uint32 oldState, Map* instance)
+{
+    FOREACH_SCRIPT(GlobalScript)->OnBeforeSetBossState(id, newState, oldState, instance);
+}
+
+void ScriptMgr::AfterInstanceGameObjectCreate(Map* instance, GameObject* go)
+{
+    FOREACH_SCRIPT(GlobalScript)->AfterInstanceGameObjectCreate(instance, go);
 }
 
 GameObjectAI* ScriptMgr::GetGameObjectAI(GameObject* gameobject)
 {
     ASSERT(gameobject);
+
+    // Allow AllGameObjectScript to override AI first
+    if (GameObjectAI* ai = GetGameObjectAIOverride(gameobject))
+        return ai;
 
     GET_SCRIPT_RET(GameObjectScript, gameobject->GetScriptId(), tmpscript, nullptr);
     return tmpscript->GetAI(gameobject);
@@ -1844,7 +2179,7 @@ void ScriptMgr::OnPlayerMoneyLimit(Player* player, int64 amount)
 
 void ScriptMgr::OnGivePlayerXP(Player* player, uint32& amount, Unit* victim)
 {
-    FOREACH_SCRIPT(PlayerScript)->OnGiveXP(player, amount, victim);
+    FOREACH_SCRIPT(PlayerScript)->OnGiveXP(player, amount, victim, 0);
 }
 
 void ScriptMgr::OnPlayerReputationChange(Player* player, uint32 factionID, int32& standing, bool incremental)
@@ -1956,6 +2291,12 @@ void ScriptMgr::OnQuestStatusChange(Player* player, uint32 questId)
 void ScriptMgr::OnPlayerRepop(Player* player)
 {
     FOREACH_SCRIPT(PlayerScript)->OnPlayerRepop(player);
+}
+
+void ScriptMgr::OnLootItem(Player* player, Item* item, uint32 count, ObjectGuid lootGuid)
+{
+    // OnPlayerLootItem's default impl calls OnLootItem, so dispatching OnPlayerLootItem covers both
+    FOREACH_SCRIPT(PlayerScript)->OnPlayerLootItem(player, item, count, lootGuid);
 }
 
 // Account
@@ -2136,10 +2477,11 @@ FormulaScript::FormulaScript(char const* name)
     ScriptRegistry<FormulaScript>::Instance()->AddScript(this);
 }
 
-UnitScript::UnitScript(char const* name)
+UnitScript::UnitScript(char const* name, bool addToScripts)
     : ScriptObject(name)
 {
-    ScriptRegistry<UnitScript>::Instance()->AddScript(this);
+    if (addToScripts)
+        ScriptRegistry<UnitScript>::Instance()->AddScript(this);
 }
 
 WorldMapScript::WorldMapScript(char const* name, uint32 mapId)
@@ -2344,3 +2686,81 @@ template class TC_GAME_API ScriptRegistry<GroupScript>;
 template class TC_GAME_API ScriptRegistry<UnitScript>;
 template class TC_GAME_API ScriptRegistry<AccountScript>;
 template class TC_GAME_API ScriptRegistry<WorldStateScript>;
+
+// ScriptDefines constructors and registry instantiations
+// (ScriptRegistry is only accessible within ScriptMgr.cpp)
+
+AllCreatureScript::AllCreatureScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllCreatureScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllCreatureScript>;
+
+AllGameObjectScript::AllGameObjectScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllGameObjectScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllGameObjectScript>;
+
+AllItemScript::AllItemScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllItemScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllItemScript>;
+
+AllMapScript::AllMapScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllMapScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllMapScript>;
+
+AllSpellScript::AllSpellScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllSpellScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllSpellScript>;
+
+AllBattlegroundScript::AllBattlegroundScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllBattlegroundScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllBattlegroundScript>;
+
+AllCommandScript::AllCommandScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<AllCommandScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<AllCommandScript>;
+
+GlobalScript::GlobalScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<GlobalScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<GlobalScript>;
+
+ModuleScript::ModuleScript(char const* name)
+    : ScriptObject(name)
+{ ScriptRegistry<ModuleScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<ModuleScript>;
+
+PetScript::PetScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<PetScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<PetScript>;
+
+ArenaScript::ArenaScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<ArenaScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<ArenaScript>;
+
+GameEventScript::GameEventScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<GameEventScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<GameEventScript>;
+
+MailScript::MailScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<MailScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<MailScript>;
+
+LootScript::LootScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<LootScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<LootScript>;
+
+WorldObjectScript::WorldObjectScript(char const* name, uint16 totalAvailableHooks)
+    : ScriptObject(name, totalAvailableHooks)
+{ ScriptRegistry<WorldObjectScript>::Instance()->AddScript(this); }
+template class TC_GAME_API ScriptRegistry<WorldObjectScript>;

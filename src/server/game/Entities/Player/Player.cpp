@@ -20909,6 +20909,9 @@ bool Player::IsAffectedBySpellmod(SpellInfo const* spellInfo, SpellModifier cons
             break;
     }
 
+    if (!sScriptMgr->OnIsAffectedBySpellModCheck(spellInfo, spellInfo, mod))
+        return false;
+
     return spellInfo->IsAffectedBySpellMod(mod);
 }
 
@@ -25251,6 +25254,7 @@ void Player::StoreLootItem(ObjectGuid lootWorldObjectGuid, uint8 lootSlot, Loot*
                 if (Guild* guild = GetGuild())
                     guild->AddGuildNews(GUILD_NEWS_ITEM_LOOTED, GetGUID(), 0, item->itemid);
 
+        sScriptMgr->OnLootItem(this, newitem, item->count, lootWorldObjectGuid);
         SendNewItem(newitem, uint32(item->count), false, false, true);
         UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_LOOT_ITEM, item->itemid, item->count);
         UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_LOOT_TYPE, item->itemid, item->count, loot->loot_type);

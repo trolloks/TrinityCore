@@ -17,6 +17,7 @@
 
 #include "SpellMgr.h"
 #include "BattlefieldMgr.h"
+#include "ScriptMgr.h"
 #include "BattlegroundMgr.h"
 #include "Chat.h"
 #include "Containers.h"
@@ -2944,6 +2945,11 @@ void SpellMgr::LoadSpellInfoCustomAttributes()
                     spellInfo->AttributesCu |= SPELL_ATTR0_CU_AURA_CANNOT_BE_SAVED;
         }
     }
+
+    // Allow scripts to set custom spell attributes
+    for (uint32 i = 0; i < GetSpellInfoStoreSize(); ++i)
+        if (SpellInfo* spellInfo = mSpellInfoMap[i])
+            sScriptMgr->OnLoadSpellCustomAttr(spellInfo);
 
     TC_LOG_INFO("server.loading", ">> Loaded SpellInfo custom attributes in %u ms", GetMSTimeDiffToNow(oldMSTime));
 }

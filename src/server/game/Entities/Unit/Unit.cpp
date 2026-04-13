@@ -7288,6 +7288,8 @@ int32 Unit::SpellHealingBonusTaken(Unit* caster, SpellInfo const* spellProto, in
 
     float heal = healamount * TakenTotalMod;
 
+    sScriptMgr->OnSpellHealingBonusTakenNegativeModifiers(this, caster, spellProto, heal);
+
     return int32(std::max(heal, 0.0f));
 }
 

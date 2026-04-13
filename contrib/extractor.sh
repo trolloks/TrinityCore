@@ -2,33 +2,33 @@
 
 # Set client and server directories as environment variables
 # if you don't want to enter them here
-if [ -z $CLIENT_DIR ]; then
-echo -n "Enter directory where client files are located: "
-read CLIENT_DIR
+if [ -z "$CLIENT_DIR" ]; then
+    echo -n "Enter directory where client files are located: "
+    read -r CLIENT_DIR
 
-if ! cd $CLIENT_DIR; then
+    if ! cd "$CLIENT_DIR"; then
         echo "Cannot access $CLIENT_DIR"
         exit 1
-fi
-if [ ! -d $CLIENT_DIR/Data ]; then
+    fi
+    if [ ! -d "$CLIENT_DIR/Data" ]; then
         echo "Cannot find client files in $CLIENT_DIR"
         exit 1
-fi
+    fi
 fi
 
-if [ -z $SERVER_DIR ]; then
-echo -n "Enter directory where server files are located: "
-read SERVER_DIR
+if [ -z "$SERVER_DIR" ]; then
+    echo -n "Enter directory where server files are located: "
+    read -r SERVER_DIR
 
-if ! cd $SERVER_DIR; then
+    if ! cd "$SERVER_DIR"; then
         echo "Cannot access $SERVER_DIR"
         exit 1
-fi
+    fi
 fi
 
 # These should all be correct on a standard installation
-DATA_DIR=${SERVER_DIR}/data
-MAPEXTRACTOR=${SERVER_DIR}/bin/mapextractor
+DATA_DIR=/trinity/data
+sMAPEXTRACTOR=${SERVER_DIR}/bin/mapextractor
 VMAP4EXTRACTOR=${SERVER_DIR}/bin/vmap4extractor
 VMAP4ASSEMBLER=${SERVER_DIR}/bin/vmap4assembler
 MMAPS_GENERATOR=${SERVER_DIR}/bin/mmaps_generator

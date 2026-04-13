@@ -2990,6 +2990,10 @@ void ObjectMgr::LoadItemTemplates()
     for (std::set<uint32>::const_iterator itr = notFoundOutfit.begin(); itr != notFoundOutfit.end(); ++itr)
         TC_LOG_ERROR("sql.sql", "Item (Entry: %u) does not exist in `item.db2` but is referenced in `CharStartOutfit.dbc`", *itr);
 
+    // Populate AzerothCore compatibility fields
+    for (auto& pair : _itemTemplateStore)
+        pair.second.InitAcoreCompat();
+
     TC_LOG_INFO("server.loading", ">> Loaded %u item templates in %u ms", sparseCount, GetMSTimeDiffToNow(oldMSTime));
 }
 

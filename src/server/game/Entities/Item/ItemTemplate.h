@@ -657,6 +657,13 @@ struct TC_GAME_API ItemTemplate
     uint32 GetDelay() const { return ExtendedData->Delay; }
     ItemBondingType GetBonding() const { return ItemBondingType(ExtendedData->Bonding); }
     char const* GetName(LocaleConstant locale) const;
+
+    // AzerothCore compatibility fields — populated after DBC load via ItemTemplate::InitAcoreCompat()
+    uint32 ItemId    = 0;
+    uint32 Quality   = 0;
+    uint32 SellPrice = 0;
+    char const* Name1 = nullptr;
+    void InitAcoreCompat() { ItemId = GetId(); Quality = GetQuality(); SellPrice = GetSellPrice(); Name1 = GetName(LOCALE_enUS); }
     uint32 GetPageText() const { return ExtendedData->PageText; }
     uint32 GetStartQuest() const { return ExtendedData->StartQuest; }
     uint32 GetLockID() const { return ExtendedData->LockID; }

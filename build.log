@@ -1,0 +1,1792 @@
+ Image trinitycore:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 597B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 2.07kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:22.04
+#3 DONE 1.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 80B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [builder 1/5] FROM docker.io/library/ubuntu:22.04@sha256:eb29ed27b0821dca09c2e28b39135e185fc1302036427d5f4d70a41ce8fd7659
+#6 resolve docker.io/library/ubuntu:22.04@sha256:eb29ed27b0821dca09c2e28b39135e185fc1302036427d5f4d70a41ce8fd7659 0.1s done
+#6 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 1.81MB 1.4s done
+#5 DONE 1.5s
+
+#7 [builder 2/5] RUN apt-get update && apt-get install -y     cmake     make     g++-11     gcc-11     git     ccache     libboost-all-dev     libmysqlclient-dev     libssl-dev     libreadline-dev     zlib1g-dev     libbz2-dev     libncurses-dev   && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100                           --slave   /usr/bin/g++ g++ /usr/bin/g++-11   && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [builder 3/5] WORKDIR /src
+#8 CACHED
+
+#9 [builder 4/5] COPY . .
+#9 DONE 77.0s
+
+#10 [builder 5/5] RUN --mount=type=cache,target=/ccache     mkdir -p build && cd build &&     cmake ../       -DWITH_WARNINGS=0       -DWITH_COREDEBUG=0       -DUSE_COREPCH=1       -DUSE_SCRIPTPCH=1       -DTOOLS=1       -DSCRIPTS=static       -DSERVERS=1       -DNOJEM=0       -DCMAKE_BUILD_TYPE=RelWithDebInfo       -DCMAKE_INSTALL_PREFIX=/trinity       -DBUILD_TESTING=0       -DCMAKE_CXX_COMPILER_LAUNCHER=ccache       -DCMAKE_C_COMPILER_LAUNCHER=ccache   && make -j"$(nproc)"   && make install
+#10 0.653 -- The C compiler identification is GNU 11.4.0
+#10 0.730 -- The CXX compiler identification is GNU 11.4.0
+#10 0.742 -- Detecting C compiler ABI info
+#10 0.830 -- Detecting C compiler ABI info - done
+#10 0.840 -- Check for working C compiler: /usr/bin/cc - skipped
+#10 0.844 -- Detecting C compile features
+#10 0.844 -- Detecting C compile features - done
+#10 0.850 -- Detecting CXX compiler ABI info
+#10 0.960 -- Detecting CXX compiler ABI info - done
+#10 0.973 -- Check for working CXX compiler: /usr/bin/g++ - skipped
+#10 0.973 -- Detecting CXX compile features
+#10 0.974 -- Detecting CXX compile features - done
+#10 0.979 -- Detected 64-bit platform
+#10 0.980 -- UNIX: Using default configuration directory
+#10 0.980 -- UNIX: Configuring uninstall target
+#10 0.980 -- UNIX: Created uninstall target
+#10 0.980 -- UNIX: Detected compiler: /usr/bin/cc
+#10 0.980 -- GCC: Minimum version required is 10.0.0, found 11.4.0 - ok!
+#10 0.980 -- GCC: SFMT enabled, SSE2 flags forced
+#10 0.982 -- Using mysql-config: /usr/bin/mysql_config
+#10 1.011 -- Found MySQL:    
+#10 1.017 -- Found Git: /usr/bin/git (found suitable version "2.34.1", minimum required is "1.7") 
+#10 1.017 -- Using mysql-config: /usr/bin/mysql_config
+#10 1.044 -- Found MySQL:    missing components: binary
+#10 1.126 
+#10 1.126 * TrinityCore revision   : e53b90d75b60+ 2026-03-26 22:09:43 +0100 (develop branch)
+#10 1.126 * TrinityCore buildtype  : RelWithDebInfo
+#10 1.126 
+#10 1.126 * Install core to        : /trinity
+#10 1.126 
+#10 1.126 * Build world/auth       : Yes (default)
+#10 1.126 * Build with scripts     : Yes (static)
+#10 1.126 * Build map/vmap tools   : Yes (default)
+#10 1.126 * Build unit tests       : No (default)
+#10 1.126 * Unity build enabled    : No (default)
+#10 1.126 * Build core w/PCH       : Yes (default)
+#10 1.126 * Build scripts w/PCH    : Yes (default)
+#10 1.126 * Show compile-warnings  : No  (default)
+#10 1.126 * Use coreside debug     : No  (default)
+#10 1.126 * Show source tree       : Yes (hierarchical)
+#10 1.126 * Use GIT revision hash  : Yes (default)
+#10 1.126 
+#10 1.131 -- Looking for pthread.h
+#10 1.224 -- Looking for pthread.h - found
+#10 1.224 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+#10 1.313 -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+#10 1.316 -- Found Threads: TRUE  
+#10 1.352 -- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") 
+#10 1.356 -- Found BZip2: /usr/lib/x86_64-linux-gnu/libbz2.so (found version "1.0.8") 
+#10 1.357 -- Looking for BZ2_bzCompressInit
+#10 1.445 -- Looking for BZ2_bzCompressInit - found
+#10 1.450 -- Looking for strtod_l
+#10 1.487 -- Looking for strtod_l - not found
+#10 1.497 -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found suitable version "3.0.2", minimum required is "1.1") found components: Crypto SSL 
+#10 1.607 -- Performing Test JEMALLOC_USABLE_SIZE_CONST
+#10 1.644 -- Performing Test JEMALLOC_USABLE_SIZE_CONST - Failed
+#10 1.645 -- Looking for memalign
+#10 1.736 -- Looking for memalign - found
+#10 1.737 -- Looking for valloc
+#10 1.833 -- Looking for valloc - found
+#10 1.833 -- Looking for malloc_size
+#10 1.864 -- Looking for malloc_size - not found
+#10 1.864 -- Looking for __libc_calloc
+#10 1.966 -- Looking for __libc_calloc - found
+#10 1.967 -- Looking for __libc_free
+#10 2.053 -- Looking for __libc_free - found
+#10 2.053 -- Looking for __libc_malloc
+#10 2.138 -- Looking for __libc_malloc - found
+#10 2.138 -- Looking for __libc_memalign
+#10 2.225 -- Looking for __libc_memalign - found
+#10 2.225 -- Looking for __libc_realloc
+#10 2.306 -- Looking for __libc_realloc - found
+#10 2.307 -- Looking for __libc_valloc
+#10 2.391 -- Looking for __libc_valloc - found
+#10 2.391 -- Looking for __posix_memalign
+#10 2.484 -- Looking for __posix_memalign - not found
+#10 2.484 -- Looking for pthread_atfork
+#10 2.575 -- Looking for pthread_atfork - found
+#10 2.575 -- Looking for pthread_setname_np
+#10 2.661 -- Looking for pthread_setname_np - found
+#10 2.662 -- Looking for pthread_getname_np
+#10 2.759 -- Looking for pthread_getname_np - found
+#10 2.760 -- Looking for pthread_get_name_np
+#10 2.797 -- Looking for pthread_get_name_np - not found
+#10 2.798 -- Performing Test JEMALLOC_HAVE_PTHREAD_MUTEX_ADAPTIVE_NP
+#10 2.892 -- Performing Test JEMALLOC_HAVE_PTHREAD_MUTEX_ADAPTIVE_NP - Success
+#10 2.893 -- Looking for CLOCK_MONOTONIC_COARSE
+#10 2.977 -- Looking for CLOCK_MONOTONIC_COARSE - found
+#10 2.977 -- Looking for CLOCK_MONOTONIC
+#10 3.074 -- Looking for CLOCK_MONOTONIC - found
+#10 3.075 -- Looking for CLOCK_REALTIME
+#10 3.161 -- Looking for CLOCK_REALTIME - found
+#10 3.162 -- Performing Test JEMALLOC_USE_SYSCALL
+#10 3.269 -- Performing Test JEMALLOC_USE_SYSCALL - Success
+#10 3.270 -- Looking for secure_getenv
+#10 3.364 -- Looking for secure_getenv - found
+#10 3.365 -- Looking for sched_getcpu
+#10 3.445 -- Looking for sched_getcpu - found
+#10 3.446 -- Looking for sched_setaffinity
+#10 3.540 -- Looking for sched_setaffinity - found
+#10 3.540 -- Looking for issetugid
+#10 3.574 -- Looking for issetugid - not found
+#10 3.575 -- Looking for _malloc_thread_cleanup
+#10 3.618 -- Looking for _malloc_thread_cleanup - not found
+#10 3.618 -- Looking for _pthread_mutex_init_calloc_cb
+#10 3.659 -- Looking for _pthread_mutex_init_calloc_cb - not found
+#10 3.659 -- Looking for memcntl
+#10 3.697 -- Looking for memcntl - not found
+#10 3.698 -- Looking for madvise
+#10 3.786 -- Looking for madvise - found
+#10 3.787 -- Looking for MADV_FREE
+#10 3.872 -- Looking for MADV_FREE - found
+#10 3.872 -- Looking for MADV_DONTNEED
+#10 3.958 -- Looking for MADV_DONTNEED - found
+#10 3.958 -- Looking for MADV_DONTDUMP
+#10 4.044 -- Looking for MADV_DONTDUMP - found
+#10 4.044 -- Looking for MADV_NOCORE
+#10 4.077 -- Looking for MADV_NOCORE - not found
+#10 4.078 -- Looking for mprotect
+#10 4.162 -- Looking for mprotect - found
+#10 4.164 -- Performing Test JEMALLOC_STRERROR_R_RETURNS_CHAR_WITH_GNU_SOURCE
+#10 4.266 -- Performing Test JEMALLOC_STRERROR_R_RETURNS_CHAR_WITH_GNU_SOURCE - Success
+#10 4.269 -- Found Readline library: /usr/lib/x86_64-linux-gnu/libreadline.so
+#10 4.269 -- Include dir is: /usr/include
+#10 4.407 
+#10 4.408 * Script configuration (static):
+#10 4.408     |
+#10 4.408     +- worldserver
+#10 4.408     |   +- Battlefield
+#10 4.408     |   +- Commands
+#10 4.408     |   +- Custom
+#10 4.408     |   +- EasternKingdoms
+#10 4.408     |   +- Events
+#10 4.408     |   +- Kalimdor
+#10 4.408     |   +- Maelstrom
+#10 4.408     |   +- Northrend
+#10 4.408     |   +- OutdoorPvP
+#10 4.408     |   +- Outland
+#10 4.408     |   +- Pet
+#10 4.408     |   +- Spells
+#10 4.408     |   +- World
+#10 4.408     |
+#10 4.546 
+#10 4.556 -- * Modules configuration:
+#10 4.556 --   |
+#10 4.556 --   +- mod-junk-to-gold (static)
+#10 4.556 --   |
+#10 4.556 -- 
+#10 4.574 -- Configuring done
+#10 4.972 -- Generating done
+#10 4.980 -- Build files have been written to: /src/build
+#10 5.054 [  0%] Building CXX object dep/fmt/CMakeFiles/fmt.dir/src/format.cc.o
+#10 5.054 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourAlloc.cpp.o
+#10 5.074 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/Recast.cpp.o
+#10 5.074 [  0%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/cmake_pch.hxx.gch
+#10 5.088 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourAssert.cpp.o
+#10 5.105 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourCommon.cpp.o
+#10 5.106 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastAlloc.cpp.o
+#10 5.108 [  0%] Building CXX object dep/fmt/CMakeFiles/fmt.dir/src/os.cc.o
+#10 5.148 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastAssert.cpp.o
+#10 5.159 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourNavMesh.cpp.o
+#10 5.172 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastArea.cpp.o
+#10 5.187 [  0%] Linking CXX static library libfmt.a
+#10 5.209 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourNavMeshBuilder.cpp.o
+#10 5.209 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastContour.cpp.o
+#10 5.250 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastFilter.cpp.o
+#10 5.286 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourNavMeshQuery.cpp.o
+#10 5.314 [  0%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastLayers.cpp.o
+#10 5.336 [  0%] Built target fmt
+#10 5.348 [  0%] Building CXX object dep/recastnavigation/Detour/CMakeFiles/Detour.dir/Source/DetourNode.cpp.o
+#10 5.365 [  1%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastMesh.cpp.o
+#10 5.397 [  1%] Linking CXX static library libDetour.a
+#10 5.427 [  1%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastMeshDetail.cpp.o
+#10 5.435 [  1%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/jemalloc.c.o
+#10 5.470 [  1%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastRasterization.cpp.o
+#10 5.475 [  1%] Built target Detour
+#10 5.500 [  1%] Building CXX object dep/recastnavigation/Recast/CMakeFiles/Recast.dir/Source/RecastRegion.cpp.o
+#10 5.506 [  1%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/arena.c.o
+#10 5.531 [  1%] Building CXX object dep/gsoap/CMakeFiles/gsoap.dir/soapC.cpp.o
+#10 5.546 [  1%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/background_thread.c.o
+#10 5.561 [  1%] Linking CXX static library libRecast.a
+#10 5.587 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/base.c.o
+#10 5.597 [  2%] Building CXX object dep/gsoap/CMakeFiles/gsoap.dir/soapServer.cpp.o
+#10 5.617 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/bin.c.o
+#10 5.689 [  2%] Building CXX object dep/gsoap/CMakeFiles/gsoap.dir/stdsoap2.cpp.o
+#10 5.689 [  2%] Linking CXX static library libgsoap.a
+#10 5.703 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/bin_info.c.o
+#10 5.728 [  2%] Built target Recast
+#10 5.767 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/bitmap.c.o
+#10 5.771 [  2%] Building C object dep/argon2/CMakeFiles/argon2.dir/argon2/argon2.c.o
+#10 5.808 [  2%] Built target gsoap
+#10 5.815 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/buf_writer.c.o
+#10 5.820 [  2%] Building C object dep/argon2/CMakeFiles/argon2.dir/argon2/blake2/blake2b.c.o
+#10 5.831 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/cache_bin.c.o
+#10 5.852 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/ckh.c.o
+#10 5.858 [  2%] Building C object dep/argon2/CMakeFiles/argon2.dir/argon2/core.c.o
+#10 5.878 [  2%] Building C object dep/argon2/CMakeFiles/argon2.dir/argon2/encoding.c.o
+#10 5.904 [  2%] Building C object dep/argon2/CMakeFiles/argon2.dir/argon2/opt.c.o
+#10 5.904 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/counter.c.o
+#10 5.911 [  2%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/adpcm/adpcm.cpp.o
+#10 5.928 [  2%] Building C object dep/argon2/CMakeFiles/argon2.dir/argon2/thread.c.o
+#10 5.936 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/ctl.c.o
+#10 5.940 [  2%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/huffman/huff.cpp.o
+#10 5.951 [  2%] Linking CXX static library libargon2.a
+#10 5.964 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/decay.c.o
+#10 5.985 [  2%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/jenkins/lookup3.c.o
+#10 5.996 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/div.c.o
+#10 6.044 [  2%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/lzma/C/LzFind.c.o
+#10 6.083 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/ecache.c.o
+#10 6.083 [  2%] Built target argon2
+#10 6.094 [  2%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/lzma/C/LzmaDec.c.o
+#10 6.108 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/edata.c.o
+#10 6.117 [  2%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/lzma/C/LzmaEnc.c.o
+#10 6.127 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/edata_cache.c.o
+#10 6.137 [  2%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/ehooks.c.o
+#10 6.144 [  2%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/pklib/explode.c.o
+#10 6.176 [  3%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/emap.c.o
+#10 6.194 [  3%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/pklib/implode.c.o
+#10 6.234 [  3%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/sparse/sparse.cpp.o
+#10 6.240 [  3%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/eset.c.o
+#10 6.258 [  3%] Built target revision_data.h
+#10 6.262 [  3%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/FileStream.cpp.o
+#10 6.273 [  3%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/extent.c.o
+#10 6.289 [  3%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/exp_grow.c.o
+#10 6.303 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SBaseFileTable.cpp.o
+#10 6.321 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SBaseCommon.cpp.o
+#10 6.326 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/extent_dss.c.o
+#10 6.329 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/extent_mmap.c.o
+#10 6.351 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileAddFile.cpp.o
+#10 6.351 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/fxp.c.o
+#10 6.357 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SCompression.cpp.o
+#10 6.373 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/san.c.o
+#10 6.390 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileCompactArchive.cpp.o
+#10 6.406 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileAttributes.cpp.o
+#10 6.411 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/san_bump.c.o
+#10 6.435 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileCreateArchive.cpp.o
+#10 6.437 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/hook.c.o
+#10 6.452 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/hpa.c.o
+#10 6.463 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileExtractFile.cpp.o
+#10 6.467 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/hpa_hooks.c.o
+#10 6.484 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileFindFile.cpp.o
+#10 6.488 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileListFile.cpp.o
+#10 6.508 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/hpdata.c.o
+#10 6.519 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/inspect.c.o
+#10 6.521 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileOpenArchive.cpp.o
+#10 6.553 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileOpenFileEx.cpp.o
+#10 6.553 [  4%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFilePatchArchives.cpp.o
+#10 6.558 [  4%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/large.c.o
+#10 6.578 [  5%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/log.c.o
+#10 6.592 [  5%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileReadFile.cpp.o
+#10 6.609 [  5%] Building CXX object dep/StormLib/CMakeFiles/storm.dir/src/SFileVerify.cpp.o
+#10 6.619 [  5%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/malloc_io.c.o
+#10 6.635 [  5%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/hashes/hash_memory.c.o
+#10 6.656 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/hashes/md5.c.o
+#10 6.668 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/mutex.c.o
+#10 6.676 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/nstime.c.o
+#10 6.680 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/hashes/sha1.c.o
+#10 6.702 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/pa.c.o
+#10 6.708 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/math/ltm_desc.c.o
+#10 6.717 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/math/multi.c.o
+#10 6.734 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/pa_extra.c.o
+#10 6.741 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/math/rand_prime.c.o
+#10 6.747 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/pai.c.o
+#10 6.761 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/base64_decode.c.o
+#10 6.773 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/pac.c.o
+#10 6.780 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_argchk.c.o
+#10 6.795 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_find_hash.c.o
+#10 6.809 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/pages.c.o
+#10 6.812 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/peak_event.c.o
+#10 6.817 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_find_prng.c.o
+#10 6.844 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/prof.c.o
+#10 6.854 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_hash_descriptor.c.o
+#10 6.870 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/prof_data.c.o
+#10 6.877 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/prof_log.c.o
+#10 6.892 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_hash_is_valid.c.o
+#10 6.904 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/prof_recent.c.o
+#10 6.914 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_libc.c.o
+#10 6.917 [  6%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/prof_stats.c.o
+#10 6.934 [  6%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_ltc_mp_descriptor.c.o
+#10 6.946 [  7%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/prof_sys.c.o
+#10 6.971 [  7%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_prng_is_valid.c.o
+#10 6.972 [  7%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_prng_descriptor.c.o
+#10 6.987 [  7%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/psset.c.o
+#10 7.000 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_register_hash.c.o
+#10 7.010 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/rtree.c.o
+#10 7.023 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/crypt_register_prng.c.o
+#10 7.031 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/safety_check.c.o
+#10 7.037 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/sc.c.o
+#10 7.051 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/misc/zeromem.c.o
+#10 7.075 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_bit_string.c.o
+#10 7.101 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/sec.c.o
+#10 7.119 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_boolean.c.o
+#10 7.127 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_choice.c.o
+#10 7.133 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/stats.c.o
+#10 7.154 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_ia5_string.c.o
+#10 7.177 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/sz.c.o
+#10 7.192 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_integer.c.o
+#10 7.193 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/tcache.c.o
+#10 7.212 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_object_identifier.c.o
+#10 7.222 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/test_hooks.c.o
+#10 7.233 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/thread_event.c.o
+#10 7.255 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/ticker.c.o
+#10 7.268 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_printable_string.c.o
+#10 7.281 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_octet_string.c.o
+#10 7.291 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/tsd.c.o
+#10 7.309 [  8%] Building C object dep/jemalloc/CMakeFiles/jemalloc.dir/src/witness.c.o
+#10 7.325 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_sequence_ex.c.o
+#10 7.342 [  8%] Building CXX object dep/jemalloc/CMakeFiles/jemalloc.dir/src/jemalloc_cpp.cpp.o
+#10 7.355 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_sequence_flexi.c.o
+#10 7.359 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_sequence_multi.c.o
+#10 7.389 [  8%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_short_integer.c.o
+#10 7.392 [  9%] Linking CXX static library libjemalloc.a
+#10 7.412 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_utctime.c.o
+#10 7.426 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_decode_utf8_string.c.o
+#10 7.447 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_bit_string.c.o
+#10 7.452 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_boolean.c.o
+#10 7.484 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_ia5_string.c.o
+#10 7.484 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_integer.c.o
+#10 7.589 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_object_identifier.c.o
+#10 7.600 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_octet_string.c.o
+#10 7.739 [ 10%] Built target jemalloc
+#10 7.755 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_sequence.c.o
+#10 7.758 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_printable_string.c.o
+#10 7.765 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_utctime.c.o
+#10 7.794 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_sequence_free.c.o
+#10 7.797 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_utf8_string.c.o
+#10 7.813 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/asn1/der_length_short_integer.c.o
+#10 7.824 [ 10%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/ecc/ltc_ecc_map.c.o
+#10 7.834 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/ecc/ltc_ecc_mul2add.c.o
+#10 7.840 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/ecc/ltc_ecc_mulmod.c.o
+#10 7.853 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/ecc/ltc_ecc_points.c.o
+#10 7.864 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/ecc/ltc_ecc_projective_dbl_point.c.o
+#10 7.866 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/ecc/ltc_ecc_projective_add_point.c.o
+#10 7.877 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/pkcs1/pkcs_1_mgf1.c.o
+#10 7.893 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/pkcs1/pkcs_1_oaep_decode.c.o
+#10 7.909 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/pkcs1/pkcs_1_pss_decode.c.o
+#10 7.914 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/pkcs1/pkcs_1_v1_5_decode.c.o
+#10 7.928 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/rsa/rsa_exptmod.c.o
+#10 7.936 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/rsa/rsa_import.c.o
+#10 7.936 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/rsa/rsa_free.c.o
+#10 7.955 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/rsa/rsa_verify_hash.c.o
+#10 7.960 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/rsa/rsa_make_key.c.o
+#10 7.968 [ 11%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtomcrypt/src/pk/rsa/rsa_verify_simple.c.o
+#10 7.981 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bncore.c.o
+#10 7.993 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_fast_mp_invmod.c.o
+#10 8.016 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_fast_mp_montgomery_reduce.c.o
+#10 8.027 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_fast_s_mp_mul_digs.c.o
+#10 8.033 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_fast_s_mp_mul_high_digs.c.o
+#10 8.040 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_fast_s_mp_sqr.c.o
+#10 8.047 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_2expt.c.o
+#10 8.058 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_abs.c.o
+#10 8.071 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_addmod.c.o
+#10 8.077 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_add.c.o
+#10 8.089 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_add_d.c.o
+#10 8.096 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_and.c.o
+#10 8.108 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_clamp.c.o
+#10 8.134 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_clear.c.o
+#10 8.138 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_clear_multi.c.o
+#10 8.149 [ 12%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_cmp_d.c.o
+#10 8.149 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_cmp.c.o
+#10 8.158 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_cmp_mag.c.o
+#10 8.177 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_copy.c.o
+#10 8.191 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_cnt_lsb.c.o
+#10 8.207 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_count_bits.c.o
+#10 8.223 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_div.c.o
+#10 8.243 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_div_2.c.o
+#10 8.254 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_div_2d.c.o
+#10 8.255 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_div_3.c.o
+#10 8.269 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_div_d.c.o
+#10 8.277 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_dr_is_modulus.c.o
+#10 8.286 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_dr_reduce.c.o
+#10 8.307 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_dr_setup.c.o
+#10 8.352 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_exch.c.o
+#10 8.356 [ 13%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_exptmod_fast.c.o
+#10 8.357 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_exptmod.c.o
+#10 8.369 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_expt_d.c.o
+#10 8.383 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_exteuclid.c.o
+#10 8.396 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_fwrite.c.o
+#10 8.406 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_gcd.c.o
+#10 8.412 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_get_int.c.o
+#10 8.427 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_grow.c.o
+#10 8.427 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_fread.c.o
+#10 8.434 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_init.c.o
+#10 8.476 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_init_copy.c.o
+#10 8.482 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_init_set.c.o
+#10 8.486 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_init_multi.c.o
+#10 8.501 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_init_set_int.c.o
+#10 8.520 [ 14%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_init_size.c.o
+#10 8.535 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_invmod.c.o
+#10 8.546 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_invmod_slow.c.o
+#10 8.556 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_is_square.c.o
+#10 8.567 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_jacobi.c.o
+#10 8.584 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_karatsuba_mul.c.o
+#10 8.588 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_lcm.c.o
+#10 8.604 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_lshd.c.o
+#10 8.609 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_karatsuba_sqr.c.o
+#10 8.629 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mod.c.o
+#10 8.641 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mod_2d.c.o
+#10 8.647 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mod_d.c.o
+#10 8.669 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_montgomery_calc_normalization.c.o
+#10 8.697 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mul.c.o
+#10 8.721 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_montgomery_reduce.c.o
+#10 8.721 [ 15%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_montgomery_setup.c.o
+#10 8.729 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mulmod.c.o
+#10 8.748 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mul_2.c.o
+#10 8.763 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_neg.c.o
+#10 8.779 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_n_root.c.o
+#10 8.796 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mul_2d.c.o
+#10 8.797 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_or.c.o
+#10 8.808 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_mul_d.c.o
+#10 8.816 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_fermat.c.o
+#10 8.832 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_is_divisible.c.o
+#10 8.847 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_is_prime.c.o
+#10 8.856 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_miller_rabin.c.o
+#10 8.857 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_next_prime.c.o
+#10 8.871 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_rabin_miller_trials.c.o
+#10 8.877 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_prime_random_ex.c.o
+#10 8.908 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_radix_size.c.o
+#10 8.915 [ 16%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_rand.c.o
+#10 8.918 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_radix_smap.c.o
+#10 8.937 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_read_unsigned_bin.c.o
+#10 8.944 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_read_radix.c.o
+#10 8.947 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_read_signed_bin.c.o
+#10 8.966 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce.c.o
+#10 8.967 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_2k.c.o
+#10 8.974 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_2k_l.c.o
+#10 8.996 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_2k_setup.c.o
+#10 9.005 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_is_2k.c.o
+#10 9.012 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_2k_setup_l.c.o
+#10 9.051 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_rshd.c.o
+#10 9.056 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_is_2k_l.c.o
+#10 9.058 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_reduce_setup.c.o
+#10 9.077 [ 17%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_set.c.o
+#10 9.081 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_set_int.c.o
+#10 9.092 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_shrink.c.o
+#10 9.111 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_sqr.c.o
+#10 9.121 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_signed_bin_size.c.o
+#10 9.130 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_sqrmod.c.o
+#10 9.142 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_sqrt.c.o
+#10 9.149 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_sub.c.o
+#10 9.153 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_submod.c.o
+#10 9.173 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_toom_mul.c.o
+#10 9.185 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_sub_d.c.o
+#10 9.188 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_toom_sqr.c.o
+#10 9.192 [ 18%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/AABox.cpp.o
+#10 9.193 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_toradix.c.o
+#10 9.213 [ 18%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Any.cpp.o
+#10 9.215 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_to_signed_bin.c.o
+#10 9.232 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_toradix_n.c.o
+#10 9.243 [ 18%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_to_signed_bin_n.c.o
+#10 9.292 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_to_unsigned_bin.c.o
+#10 9.339 [ 19%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/AnyTableReader.cpp.o
+#10 9.483 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_to_unsigned_bin_n.c.o
+#10 9.541 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_unsigned_bin_size.c.o
+#10 9.584 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_xor.c.o
+#10 9.616 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_mp_zero.c.o
+#10 9.634 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_prime_tab.c.o
+#10 9.687 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_reverse.c.o
+#10 9.735 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_s_mp_add.c.o
+#10 9.761 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_s_mp_exptmod.c.o
+#10 9.783 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_s_mp_mul_digs.c.o
+#10 9.807 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_s_mp_mul_high_digs.c.o
+#10 9.825 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_s_mp_sqr.c.o
+#10 9.850 [ 19%] Building C object dep/StormLib/CMakeFiles/storm.dir/src/libtommath/bn_s_mp_sub.c.o
+#10 9.883 [ 19%] Linking CXX static library libstorm.a
+#10 10.12 [ 19%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/BinaryFormat.cpp.o
+#10 10.48 [ 19%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/BinaryInput.cpp.o
+#10 10.54 [ 19%] Built target storm
+#10 10.68 [ 19%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/BinaryOutput.cpp.o
+#10 10.83 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Box.cpp.o
+#10 12.27 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Capsule.cpp.o
+#10 12.54 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/CollisionDetection.cpp.o
+#10 12.96 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/CoordinateFrame.cpp.o
+#10 13.55 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Crypto.cpp.o
+#10 13.84 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Cylinder.cpp.o
+#10 14.16 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/debugAssert.cpp.o
+#10 14.50 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/FileSystem.cpp.o
+#10 14.89 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/fileutils.cpp.o
+#10 14.97 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/format.cpp.o
+#10 15.35 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/g3dfnmatch.cpp.o
+#10 15.46 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/g3dmath.cpp.o
+#10 15.94 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/GThread.cpp.o
+#10 16.04 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Line.cpp.o
+#10 16.67 [ 20%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/LineSegment.cpp.o
+#10 16.76 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Log.cpp.o
+#10 17.32 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Matrix3.cpp.o
+#10 17.69 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Matrix4.cpp.o
+#10 18.55 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/MemoryManager.cpp.o
+#10 18.83 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/PhysicsFrame.cpp.o
+#10 19.10 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Plane.cpp.o
+#10 19.24 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/prompt.cpp.o
+#10 19.65 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Quat.cpp.o
+#10 19.68 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Random.cpp.o
+#10 19.76 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Ray.cpp.o
+#10 20.36 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/RegistryUtil.cpp.o
+#10 20.46 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Sphere.cpp.o
+#10 20.53 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/stringutils.cpp.o
+#10 20.72 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/System.cpp.o
+#10 21.09 [ 21%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/TextInput.cpp.o
+#10 22.38 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/TextOutput.cpp.o
+#10 22.63 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Triangle.cpp.o
+#10 23.24 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/uint128.cpp.o
+#10 23.62 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/UprightFrame.cpp.o
+#10 23.65 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Vector2.cpp.o
+#10 24.45 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Vector4.cpp.o
+#10 24.45 [ 22%] Building CXX object dep/g3dlite/CMakeFiles/g3dlib.dir/source/Vector3.cpp.o
+#10 25.93 [ 22%] Linking CXX static library libg3dlib.a
+#10 27.01 [ 22%] Built target g3dlib
+#10 27.06 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/cmake_pch.hxx.gch
+#10 31.13 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Common.cpp.o
+#10 31.14 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/GitRevision.cpp.o
+#10 31.14 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Banner.cpp.o
+#10 31.14 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/BoundingIntervalHierarchy.cpp.o
+#10 31.74 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/DynamicTree.cpp.o
+#10 31.90 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Management/MMapFactory.cpp.o
+#10 31.98 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Management/MMapManager.cpp.o
+#10 33.13 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Management/VMapFactory.cpp.o
+#10 33.66 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Management/VMapManager2.cpp.o
+#10 34.22 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Maps/MapDefines.cpp.o
+#10 34.74 [ 22%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Maps/MapTree.cpp.o
+#10 36.14 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Maps/TileAssembler.cpp.o
+#10 36.38 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Models/GameObjectModel.cpp.o
+#10 40.85 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Models/ModelInstance.cpp.o
+#10 40.97 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Collision/Models/WorldModel.cpp.o
+#10 41.67 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Configuration/BuiltInConfig.cpp.o
+#10 42.24 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Configuration/Config.cpp.o
+#10 42.36 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/AES.cpp.o
+#10 43.03 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/ARC4.cpp.o
+#10 43.84 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/Argon2Hash.cpp.o
+#10 44.02 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/BigNumber.cpp.o
+#10 44.38 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/CryptoRandom.cpp.o
+#10 44.76 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/OpenSSLCrypto.cpp.o
+#10 45.05 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/TOTP.cpp.o
+#10 45.09 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/Authentication/PacketCrypt.cpp.o
+#10 45.61 [ 23%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/Authentication/SRP6.cpp.o
+#10 45.62 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Cryptography/Authentication/WorldPacketCrypt.cpp.o
+#10 46.43 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/DataStores/DBCFileLoader.cpp.o
+#10 46.63 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Encoding/Base32.cpp.o
+#10 47.17 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Encoding/Base64.cpp.o
+#10 47.39 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/IPLocation/IPLocation.cpp.o
+#10 47.47 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/Appender.cpp.o
+#10 48.10 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/AppenderConsole.cpp.o
+#10 51.35 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/AppenderFile.cpp.o
+#10 52.29 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/Log.cpp.o
+#10 53.43 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/LogMessage.cpp.o
+#10 54.83 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/LogOperation.cpp.o
+#10 55.60 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Logging/Logger.cpp.o
+#10 56.12 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Metric/Metric.cpp.o
+#10 56.36 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Threading/ProcessPriority.cpp.o
+#10 57.77 [ 24%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/EventMap.cpp.o
+#10 58.73 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/EventProcessor.cpp.o
+#10 59.90 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/PCGRand.cpp.o
+#10 60.31 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/Random.cpp.o
+#10 61.17 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/StartProcess.cpp.o
+#10 61.26 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/TaskScheduler.cpp.o
+#10 61.54 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Utilities/Util.cpp.o
+#10 63.65 [ 25%] Building CXX object src/common/CMakeFiles/common.dir/Debugging/Errors.cpp.o
+#10 75.16 [ 25%] Linking CXX static library libcommon.a
+#10 77.78 [ 25%] Built target common
+#10 77.81 [ 25%] Building CXX object src/tools/vmap4_assembler/CMakeFiles/vmap4assembler.dir/VMapAssembler.cpp.o
+#10 77.81 [ 25%] Building CXX object src/server/database/CMakeFiles/database.dir/cmake_pch.hxx.gch
+#10 77.85 [ 25%] Building CXX object src/tools/connection_patcher/CMakeFiles/connection_patcher.dir/Helper.cpp.o
+#10 77.87 [ 25%] Building CXX object src/tools/connection_patcher/CMakeFiles/connection_patcher.dir/Patcher.cpp.o
+#10 77.88 [ 25%] Building CXX object src/tools/map_extractor/CMakeFiles/mapextractor.dir/System.cpp.o
+#10 77.88 [ 26%] Linking CXX executable vmap4assembler
+#10 77.91 [ 26%] Building CXX object src/tools/connection_patcher/CMakeFiles/connection_patcher.dir/Program.cpp.o
+#10 78.03 [ 26%] Building CXX object src/tools/map_extractor/CMakeFiles/mapextractor.dir/dbcfile.cpp.o
+#10 78.19 [ 26%] Building CXX object src/tools/map_extractor/CMakeFiles/mapextractor.dir/loadlib.cpp.o
+#10 78.23 [ 26%] Linking CXX executable connection_patcher
+#10 78.25 [ 26%] Linking CXX executable mapextractor
+#10 79.00 [ 26%] Built target mapextractor
+#10 79.18 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/adtfile.cpp.o
+#10 79.22 [ 26%] Built target connection_patcher
+#10 79.23 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/dbcfile.cpp.o
+#10 79.27 [ 26%] Building CXX object src/tools/mmaps_generator/CMakeFiles/mmaps_generator.dir/IntermediateValues.cpp.o
+#10 79.42 [ 26%] Building CXX object src/tools/mmaps_generator/CMakeFiles/mmaps_generator.dir/MapBuilder.cpp.o
+#10 79.43 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/gameobject_extract.cpp.o
+#10 79.48 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/model.cpp.o
+#10 79.51 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/mpqfile.cpp.o
+#10 79.59 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/vmapexport.cpp.o
+#10 79.67 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/wdtfile.cpp.o
+#10 79.68 [ 26%] Building CXX object src/tools/mmaps_generator/CMakeFiles/mmaps_generator.dir/PathGenerator.cpp.o
+#10 79.73 [ 26%] Building CXX object src/tools/vmap4_extractor/CMakeFiles/vmap4extractor.dir/wmo.cpp.o
+#10 79.76 [ 26%] Building CXX object src/tools/mmaps_generator/CMakeFiles/mmaps_generator.dir/TerrainBuilder.cpp.o
+#10 79.76 [ 26%] Built target vmap4assembler
+#10 79.78 [ 26%] Linking CXX executable vmap4extractor
+#10 79.79 [ 26%] Linking CXX executable mmaps_generator
+#10 80.39 [ 26%] Built target vmap4extractor
+#10 81.04 [ 26%] Built target mmaps_generator
+#10 83.01 [ 26%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/DatabaseEnv.cpp.o
+#10 83.02 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/DatabaseLoader.cpp.o
+#10 83.02 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/DatabaseWorker.cpp.o
+#10 83.03 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/AdhocStatement.cpp.o
+#10 83.79 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/DatabaseWorkerPool.cpp.o
+#10 84.20 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/Field.cpp.o
+#10 84.37 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/MySQLConnection.cpp.o
+#10 89.77 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/MySQLPreparedStatement.cpp.o
+#10 91.85 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/MySQLThreading.cpp.o
+#10 92.43 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/PreparedStatement.cpp.o
+#10 94.35 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/QueryCallback.cpp.o
+#10 94.48 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/QueryHolder.cpp.o
+#10 94.99 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/QueryResult.cpp.o
+#10 95.17 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/Transaction.cpp.o
+#10 96.00 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/Implementation/CharacterDatabase.cpp.o
+#10 99.93 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/Implementation/HotfixDatabase.cpp.o
+#10 99.97 [ 27%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/Implementation/LoginDatabase.cpp.o
+#10 100.5 [ 28%] Building CXX object src/server/database/CMakeFiles/database.dir/Database/Implementation/WorldDatabase.cpp.o
+#10 100.8 [ 28%] Building CXX object src/server/database/CMakeFiles/database.dir/Logging/AppenderDB.cpp.o
+#10 101.5 [ 28%] Building CXX object src/server/database/CMakeFiles/database.dir/Updater/DBUpdater.cpp.o
+#10 101.6 [ 28%] Building CXX object src/server/database/CMakeFiles/database.dir/Updater/UpdateFetcher.cpp.o
+#10 110.4 [ 28%] Linking CXX static library libdatabase.a
+#10 111.8 [ 28%] Built target database
+#10 111.9 [ 28%] Building CXX object src/server/shared/CMakeFiles/shared.dir/cmake_pch.hxx.gch
+#10 117.1 [ 28%] Building CXX object src/server/shared/CMakeFiles/shared.dir/DataStores/DBCDatabaseLoader.cpp.o
+#10 117.1 [ 28%] Building CXX object src/server/shared/CMakeFiles/shared.dir/SharedDefines.cpp.o
+#10 117.1 [ 28%] Building CXX object src/server/shared/CMakeFiles/shared.dir/DataStores/DBCStore.cpp.o
+#10 117.1 [ 28%] Building CXX object src/server/shared/CMakeFiles/shared.dir/DataStores/DB2StorageLoader.cpp.o
+#10 118.5 [ 28%] Building CXX object src/server/shared/CMakeFiles/shared.dir/Packets/ByteBuffer.cpp.o
+#10 118.5 [ 29%] Building CXX object src/server/shared/CMakeFiles/shared.dir/Realm/ClientBuildInfo.cpp.o
+#10 119.4 [ 29%] Building CXX object src/server/shared/CMakeFiles/shared.dir/Realm/Realm.cpp.o
+#10 121.2 [ 29%] Building CXX object src/server/shared/CMakeFiles/shared.dir/Secrets/SecretMgr.cpp.o
+#10 127.4 [ 29%] Linking CXX static library libshared.a
+#10 127.9 [ 29%] Built target shared
+#10 128.0 [ 29%] Building CXX object src/server/authserver/CMakeFiles/authserver.dir/cmake_pch.hxx.gch
+#10 128.0 [ 29%] Building CXX object modules/CMakeFiles/modules.dir/cmake_pch.hxx.gch
+#10 128.1 [ 29%] Building CXX object src/server/game/CMakeFiles/game.dir/cmake_pch.hxx.gch
+#10 128.3 [ 29%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/cmake_pch.hxx.gch
+#10 138.9 [ 29%] Building CXX object src/server/authserver/CMakeFiles/authserver.dir/Main.cpp.o
+#10 161.5 [ 29%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CreatureAI.cpp.o
+#10 161.9 [ 29%] Building CXX object modules/CMakeFiles/modules.dir/gen_scriptloader/static/ModulesLoader.cpp.o
+#10 162.6 [ 30%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/gen_scriptloader/static/ScriptLoader.cpp.o
+#10 162.8 [ 30%] Building CXX object src/server/authserver/CMakeFiles/authserver.dir/Authentication/AuthCodes.cpp.o
+#10 164.3 [ 30%] Building CXX object modules/CMakeFiles/modules.dir/mod-junk-to-gold/src/mod_junk_to_gold.cpp.o
+#10 164.8 [ 31%] Building CXX object src/server/authserver/CMakeFiles/authserver.dir/Realms/GruntRealmList.cpp.o
+#10 166.3 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Battlefield/BattlefieldTB.cpp.o
+#10 170.6 [ 31%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CreatureAIRegistry.cpp.o
+#10 171.4 [ 31%] Linking CXX static library libmodules.a
+#10 171.5 [ 31%] Built target modules
+#10 171.5 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Battlefield/BattlefieldWG.cpp.o
+#10 172.5 [ 31%] Building CXX object src/server/authserver/CMakeFiles/authserver.dir/Server/AuthSession.cpp.o
+#10 176.6 [ 31%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CreatureAISelector.cpp.o
+#10 176.9 [ 31%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/CombatAI.cpp.o
+#10 181.8 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Battlefield/battlefield_script_loader.cpp.o
+#10 183.0 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_account.cpp.o
+#10 184.1 [ 31%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/GameObjectAI.cpp.o
+#10 184.8 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_achievement.cpp.o
+#10 186.7 [ 31%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/GuardAI.cpp.o
+#10 188.4 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_ahbot.cpp.o
+#10 189.7 [ 31%] Linking CXX executable authserver
+#10 191.7 [ 31%] Built target authserver
+#10 191.7 [ 31%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_arena.cpp.o
+#10 193.5 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/PassiveAI.cpp.o
+#10 196.5 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/PetAI.cpp.o
+#10 197.1 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_ban.cpp.o
+#10 197.2 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_bf.cpp.o
+#10 200.9 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_cast.cpp.o
+#10 201.5 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/ReactorAI.cpp.o
+#10 204.4 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_character.cpp.o
+#10 205.3 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/ScheduledChangeAI.cpp.o
+#10 207.2 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/TotemAI.cpp.o
+#10 208.1 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/CoreAI/UnitAI.cpp.o
+#10 208.8 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/PlayerAI/PlayerAI.cpp.o
+#10 210.6 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_cheat.cpp.o
+#10 212.1 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_debug.cpp.o
+#10 214.0 [ 32%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/ScriptedAI/ScriptedCreature.cpp.o
+#10 216.9 [ 32%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_deserter.cpp.o
+#10 219.1 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_disable.cpp.o
+#10 220.4 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/ScriptedAI/ScriptedEscortAI.cpp.o
+#10 224.0 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/ScriptedAI/ScriptedFollowerAI.cpp.o
+#10 228.4 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/ScriptedAI/ScriptedGossip.cpp.o
+#10 229.7 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_event.cpp.o
+#10 230.7 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_gm.cpp.o
+#10 231.4 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_go.cpp.o
+#10 233.1 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/SmartScripts/SmartAI.cpp.o
+#10 238.4 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/SmartScripts/SmartScript.cpp.o
+#10 239.7 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_gobject.cpp.o
+#10 242.3 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_group.cpp.o
+#10 243.9 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_guild.cpp.o
+#10 250.3 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/AI/SmartScripts/SmartScriptMgr.cpp.o
+#10 251.2 [ 33%] Building CXX object src/server/game/CMakeFiles/game.dir/Accounts/AccountMgr.cpp.o
+#10 252.6 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_honor.cpp.o
+#10 256.2 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_instance.cpp.o
+#10 260.7 [ 33%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_learn.cpp.o
+#10 266.4 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/Accounts/RBAC.cpp.o
+#10 269.4 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/Achievements/AchievementMgr.cpp.o
+#10 269.5 [ 34%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_lfg.cpp.o
+#10 271.4 [ 34%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_list.cpp.o
+#10 274.9 [ 34%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_lookup.cpp.o
+#10 277.7 [ 34%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_message.cpp.o
+#10 283.1 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/Addons/AddonMgr.cpp.o
+#10 286.2 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/AuctionHouse/AuctionHouseMgr.cpp.o
+#10 287.8 [ 34%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_misc.cpp.o
+#10 290.3 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/AuctionHouseBot/AuctionHouseBot.cpp.o
+#10 295.2 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/AuctionHouseBot/AuctionHouseBotBuyer.cpp.o
+#10 296.7 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/AuctionHouseBot/AuctionHouseBotSeller.cpp.o
+#10 299.8 [ 34%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlefield/Battlefield.cpp.o
+#10 303.8 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_mmaps.cpp.o
+#10 304.5 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlefield/BattlefieldMgr.cpp.o
+#10 308.8 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Arena.cpp.o
+#10 312.7 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_modify.cpp.o
+#10 313.4 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/ArenaTeam.cpp.o
+#10 314.0 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_npc.cpp.o
+#10 317.7 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/ArenaTeamMgr.cpp.o
+#10 323.4 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Battleground.cpp.o
+#10 324.2 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_pet.cpp.o
+#10 324.8 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/BattlegroundMgr.cpp.o
+#10 327.8 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_quest.cpp.o
+#10 331.9 [ 35%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/BattlegroundQueue.cpp.o
+#10 336.5 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_rbac.cpp.o
+#10 339.3 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_reload.cpp.o
+#10 340.3 [ 35%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_reset.cpp.o
+#10 343.6 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundAB.cpp.o
+#10 345.1 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundAV.cpp.o
+#10 348.7 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundBE.cpp.o
+#10 352.0 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_script_loader.cpp.o
+#10 355.1 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_send.cpp.o
+#10 355.5 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_server.cpp.o
+#10 356.3 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundBFG.cpp.o
+#10 358.5 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_tele.cpp.o
+#10 364.3 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundDS.cpp.o
+#10 364.8 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_ticket.cpp.o
+#10 366.7 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_titles.cpp.o
+#10 368.2 [ 36%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Commands/cs_wp.cpp.o
+#10 371.0 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundEY.cpp.o
+#10 373.7 [ 36%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundIC.cpp.o
+#10 373.8 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Custom/custom_script_loader.cpp.o
+#10 377.2 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundNA.cpp.o
+#10 378.9 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/eastern_kingdoms_script_loader.cpp.o
+#10 379.4 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_blasted_lands.cpp.o
+#10 381.9 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundRL.cpp.o
+#10 382.1 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_dun_morogh.cpp.o
+#10 383.6 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundRV.cpp.o
+#10 383.9 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_dun_morogh_area_coldridge_valley.cpp.o
+#10 385.5 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_duskwood.cpp.o
+#10 388.7 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundSA.cpp.o
+#10 389.1 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_elwynn_forest.cpp.o
+#10 389.3 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundTP.cpp.o
+#10 390.4 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Battlegrounds/Zones/BattlegroundWS.cpp.o
+#10 394.5 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_ghostlands.cpp.o
+#10 398.5 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_hillsbrad_foothills.cpp.o
+#10 398.6 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Cache/CharacterCache.cpp.o
+#10 398.7 [ 37%] Building CXX object src/server/game/CMakeFiles/game.dir/Calendar/CalendarMgr.cpp.o
+#10 399.8 [ 37%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_hinterlands.cpp.o
+#10 403.6 [ 38%] Building CXX object src/server/game/CMakeFiles/game.dir/Chat/Chat.cpp.o
+#10 405.3 [ 38%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_ironforge.cpp.o
+#10 405.6 [ 38%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_redridge_mountains.cpp.o
+#10 408.3 [ 38%] Building CXX object src/server/game/CMakeFiles/game.dir/Chat/ChatLink.cpp.o
+#10 408.7 [ 38%] Building CXX object src/server/game/CMakeFiles/game.dir/Chat/Channels/Channel.cpp.o
+#10 410.8 [ 38%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_silverpine_forest.cpp.o
+#10 413.7 [ 38%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_stormwind_city.cpp.o
+#10 416.5 [ 38%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_swamp_of_sorrows.cpp.o
+#10 416.8 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_tirisfal_glades.cpp.o
+#10 419.9 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Chat/Channels/ChannelMgr.cpp.o
+#10 420.5 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_tol_barad.cpp.o
+#10 421.8 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_twilight_highlands.cpp.o
+#10 422.6 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Chat/ChatCommands/ChatCommandArgs.cpp.o
+#10 423.4 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_undercity.cpp.o
+#10 425.3 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_western_plaguelands.cpp.o
+#10 427.2 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Chat/ChatCommands/ChatCommandHyperlinks.cpp.o
+#10 428.5 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Combat/CombatManager.cpp.o
+#10 429.2 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Combat/ThreatManager.cpp.o
+#10 429.3 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_westfall.cpp.o
+#10 431.3 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/zone_wetlands.cpp.o
+#10 432.4 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/AlteracValley/alterac_valley.cpp.o
+#10 435.2 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Conditions/ConditionMgr.cpp.o
+#10 436.2 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/Conditions/DisableMgr.cpp.o
+#10 437.9 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/DataStores/DB2Stores.cpp.o
+#10 437.9 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/AlteracValley/boss_balinda.cpp.o
+#10 441.3 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/AlteracValley/boss_drekthar.cpp.o
+#10 444.1 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/AlteracValley/boss_galvangar.cpp.o
+#10 447.2 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/AlteracValley/boss_vanndar.cpp.o
+#10 447.8 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/DataStores/DBCStores.cpp.o
+#10 448.9 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/DataStores/GameTables.cpp.o
+#10 450.4 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BaradinHold/boss_alizabal.cpp.o
+#10 451.5 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BaradinHold/boss_occuthar.cpp.o
+#10 454.5 [ 39%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BaradinHold/boss_pit_lord_argaloth.cpp.o
+#10 459.0 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/DataStores/M2Stores.cpp.o
+#10 459.3 [ 39%] Building CXX object src/server/game/CMakeFiles/game.dir/DungeonFinding/LFG.cpp.o
+#10 461.6 [ 40%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BaradinHold/instance_baradin_hold.cpp.o
+#10 463.2 [ 40%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BastionOfTwilight/bastion_of_twilight.cpp.o
+#10 465.4 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/DungeonFinding/LFGGroupData.cpp.o
+#10 468.1 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/DungeonFinding/LFGMgr.cpp.o
+#10 468.6 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BastionOfTwilight/boss_ascendant_council.cpp.o
+#10 469.7 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/DungeonFinding/LFGPlayerData.cpp.o
+#10 471.9 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BastionOfTwilight/boss_chogall.cpp.o
+#10 481.6 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BastionOfTwilight/boss_halfus_wyrmbreaker.cpp.o
+#10 484.2 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BastionOfTwilight/boss_theralion_and_valiona.cpp.o
+#10 484.5 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BastionOfTwilight/instance_bastion_of_twilight.cpp.o
+#10 487.5 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/DungeonFinding/LFGQueue.cpp.o
+#10 487.9 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/DungeonFinding/LFGScripts.cpp.o
+#10 488.7 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/AreaTrigger/AreaTrigger.cpp.o
+#10 493.8 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/blackrock_caverns.cpp.o
+#10 494.2 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/boss_ascendant_lord_obsidius.cpp.o
+#10 496.4 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/boss_beauty.cpp.o
+#10 496.8 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Corpse/Corpse.cpp.o
+#10 499.2 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Creature/Creature.cpp.o
+#10 499.7 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Creature/CreatureGroups.cpp.o
+#10 500.2 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/boss_corla_herald_of_twilight.cpp.o
+#10 503.6 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/boss_karsh_steelbender.cpp.o
+#10 507.2 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/boss_romogg_bonecrusher.cpp.o
+#10 508.4 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockCaverns/instance_blackrock_caverns.cpp.o
+#10 508.6 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Creature/GossipDef.cpp.o
+#10 511.4 [ 41%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Creature/TemporarySummon.cpp.o
+#10 511.8 [ 41%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/blackrock_depths.cpp.o
+#10 515.9 [ 42%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_ambassador_flamelash.cpp.o
+#10 516.6 [ 42%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Creature/Trainer.cpp.o
+#10 517.0 [ 42%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_coren_direbrew.cpp.o
+#10 517.6 [ 42%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_emperor_dagran_thaurissan.cpp.o
+#10 518.5 [ 42%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_general_angerforge.cpp.o
+#10 519.6 [ 42%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/DynamicObject/DynamicObject.cpp.o
+#10 520.4 [ 42%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/GameObject/GameObject.cpp.o
+#10 521.4 [ 42%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_high_interrogator_gerstahn.cpp.o
+#10 524.0 [ 42%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Item/Item.cpp.o
+#10 524.2 [ 42%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_magmus.cpp.o
+#10 525.6 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Item/ItemEnchantmentMgr.cpp.o
+#10 526.8 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_moira_bronzebeard.cpp.o
+#10 529.4 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/boss_tomb_of_seven.cpp.o
+#10 532.2 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockDepths/instance_blackrock_depths.cpp.o
+#10 532.3 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_drakkisath.cpp.o
+#10 532.5 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Item/ItemTemplate.cpp.o
+#10 534.8 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_gizrul_the_slavener.cpp.o
+#10 534.9 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Item/Container/Bag.cpp.o
+#10 535.0 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/MovementInfo.cpp.o
+#10 537.5 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/Object.cpp.o
+#10 538.1 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_gyth.cpp.o
+#10 540.4 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_halycon.cpp.o
+#10 540.8 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_highlord_omokk.cpp.o
+#10 540.9 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/ObjectGuid.cpp.o
+#10 543.3 [ 43%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/ObjectPosSelector.cpp.o
+#10 543.4 [ 43%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_lord_valthalak.cpp.o
+#10 545.5 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_mother_smolderweb.cpp.o
+#10 546.3 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_overlord_wyrmthalak.cpp.o
+#10 546.7 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_pyroguard_emberseer.cpp.o
+#10 548.6 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_quartermaster_zigris.cpp.o
+#10 549.3 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/Position.cpp.o
+#10 550.4 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/Updates/UpdateData.cpp.o
+#10 551.4 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_rend_blackhand.cpp.o
+#10 551.5 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_shadow_hunter_voshgajin.cpp.o
+#10 552.5 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Object/Updates/UpdateFieldFlags.cpp.o
+#10 554.3 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Pet/Pet.cpp.o
+#10 554.4 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_the_beast.cpp.o
+#10 554.7 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_urok_doomhowl.cpp.o
+#10 556.3 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/boss_warmaster_voone.cpp.o
+#10 557.0 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Player/CinematicMgr.cpp.o
+#10 557.8 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Player/KillRewarder.cpp.o
+#10 559.2 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackrockSpire/instance_blackrock_spire.cpp.o
+#10 559.4 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Player/Player.cpp.o
+#10 562.3 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/blackwing_descent.cpp.o
+#10 563.3 [ 44%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Player/PlayerTaxi.cpp.o
+#10 563.8 [ 44%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_atramedes.cpp.o
+#10 566.4 [ 45%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Player/SocialMgr.cpp.o
+#10 567.8 [ 45%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_chimaeron.cpp.o
+#10 569.2 [ 45%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Player/TradeData.cpp.o
+#10 571.4 [ 45%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_magmaw.cpp.o
+#10 571.8 [ 45%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Totem/Totem.cpp.o
+#10 574.2 [ 45%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Transport/Transport.cpp.o
+#10 574.5 [ 45%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_maloriak.cpp.o
+#10 582.4 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_nefarians_end.cpp.o
+#10 583.5 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_omnotron_defense_system.cpp.o
+#10 584.4 [ 46%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Unit/CharmInfo.cpp.o
+#10 586.9 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingDescent/instance_blackwing_descent.cpp.o
+#10 590.6 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_broodlord_lashlayer.cpp.o
+#10 592.8 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_chromaggus.cpp.o
+#10 593.4 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_ebonroc.cpp.o
+#10 594.4 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_firemaw.cpp.o
+#10 595.7 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_flamegor.cpp.o
+#10 596.3 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_nefarian.cpp.o
+#10 597.1 [ 46%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Unit/StatSystem.cpp.o
+#10 598.5 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_razorgore.cpp.o
+#10 599.3 [ 46%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Unit/Unit.cpp.o
+#10 600.6 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/boss_vaelastrasz.cpp.o
+#10 601.7 [ 46%] Building CXX object src/server/game/CMakeFiles/game.dir/Entities/Vehicle/Vehicle.cpp.o
+#10 604.5 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/BlackwingLair/instance_blackwing_lair.cpp.o
+#10 607.8 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_baron_geddon.cpp.o
+#10 609.0 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_garr.cpp.o
+#10 611.4 [ 46%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_gehennas.cpp.o
+#10 612.2 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_golemagg.cpp.o
+#10 614.3 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Events/GameEventMgr.cpp.o
+#10 615.0 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_lucifron.cpp.o
+#10 617.7 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_magmadar.cpp.o
+#10 620.2 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_majordomo_executus.cpp.o
+#10 623.2 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_ragnaros.cpp.o
+#10 627.1 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_shazzrah.cpp.o
+#10 631.7 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/boss_sulfuron_harbinger.cpp.o
+#10 632.1 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/BlackrockMountain/MoltenCore/instance_molten_core.cpp.o
+#10 633.7 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/boss_admiral_ripsnarl.cpp.o
+#10 634.8 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Events/GameEventSender.cpp.o
+#10 635.1 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/boss_captain_cookie.cpp.o
+#10 635.2 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/boss_foe_reaper_5000.cpp.o
+#10 637.9 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Globals/ObjectAccessor.cpp.o
+#10 638.6 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Globals/ObjectMgr.cpp.o
+#10 639.0 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Grids/GridStates.cpp.o
+#10 639.6 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/boss_glubtok.cpp.o
+#10 641.1 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/boss_helix_gearbreaker.cpp.o
+#10 643.6 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Grids/NGrid.cpp.o
+#10 644.2 [ 47%] Building CXX object src/server/game/CMakeFiles/game.dir/Grids/ObjectGridLoader.cpp.o
+#10 645.6 [ 47%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/boss_vanessa_van_cleef.cpp.o
+#10 648.2 [ 48%] Building CXX object src/server/game/CMakeFiles/game.dir/Grids/Notifiers/GridNotifiers.cpp.o
+#10 650.0 [ 48%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/deadmines.cpp.o
+#10 650.1 [ 48%] Building CXX object src/server/game/CMakeFiles/game.dir/Groups/Group.cpp.o
+#10 652.0 [ 48%] Building CXX object src/server/game/CMakeFiles/game.dir/Groups/GroupMgr.cpp.o
+#10 655.1 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Deadmines/instance_deadmines.cpp.o
+#10 658.6 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Groups/GroupReference.cpp.o
+#10 659.2 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Gilneas/gilneas_chapter_1.cpp.o
+#10 660.8 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Guilds/Guild.cpp.o
+#10 662.0 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Gilneas/gilneas_chapter_2.cpp.o
+#10 663.1 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Gnomeregan/gnomeregan.cpp.o
+#10 666.3 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Gnomeregan/instance_gnomeregan.cpp.o
+#10 667.3 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/GrimBatol/boss_drahga_shadowburner.cpp.o
+#10 671.7 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Guilds/GuildFinderMgr.cpp.o
+#10 671.8 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/GrimBatol/boss_erudax.cpp.o
+#10 677.5 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/GrimBatol/boss_forgemaster_throngus.cpp.o
+#10 677.9 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Guilds/GuildMgr.cpp.o
+#10 681.1 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/GrimBatol/boss_general_umbriss.cpp.o
+#10 684.2 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/ArenaTeamHandler.cpp.o
+#10 685.9 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/GrimBatol/grim_batol.cpp.o
+#10 688.0 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/GrimBatol/instance_grim_batol.cpp.o
+#10 689.0 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/AuctionHouseHandler.cpp.o
+#10 691.2 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_curator.cpp.o
+#10 691.4 [ 49%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/AuthHandler.cpp.o
+#10 694.4 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_maiden_of_virtue.cpp.o
+#10 696.0 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_midnight.cpp.o
+#10 697.3 [ 49%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_moroes.cpp.o
+#10 697.8 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_netherspite.cpp.o
+#10 699.8 [ 50%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/BattleGroundHandler.cpp.o
+#10 700.6 [ 50%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/BattlefieldHandler.cpp.o
+#10 700.7 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_nightbane.cpp.o
+#10 704.8 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_prince_malchezaar.cpp.o
+#10 706.0 [ 50%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/CalendarHandler.cpp.o
+#10 708.5 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_shade_of_aran.cpp.o
+#10 709.5 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/boss_terestian_illhoof.cpp.o
+#10 711.5 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/bosses_opera.cpp.o
+#10 713.1 [ 50%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/ChannelHandler.cpp.o
+#10 714.2 [ 50%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/CharacterHandler.cpp.o
+#10 718.0 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/instance_karazhan.cpp.o
+#10 720.7 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Karazhan/karazhan.cpp.o
+#10 721.4 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/MagistersTerrace/boss_felblood_kaelthas.cpp.o
+#10 725.6 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/MagistersTerrace/boss_priestess_delrissa.cpp.o
+#10 727.2 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/MagistersTerrace/boss_selin_fireheart.cpp.o
+#10 728.9 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/MagistersTerrace/boss_vexallus.cpp.o
+#10 729.7 [ 50%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/MagistersTerrace/instance_magisters_terrace.cpp.o
+#10 730.3 [ 51%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/ChatHandler.cpp.o
+#10 732.1 [ 51%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/MagistersTerrace/magisters_terrace.cpp.o
+#10 732.6 [ 51%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletEnclave/the_scarlet_enclave_chapter_1.cpp.o
+#10 733.4 [ 51%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/CombatHandler.cpp.o
+#10 735.1 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletEnclave/the_scarlet_enclave_chapter_2.cpp.o
+#10 738.0 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletEnclave/the_scarlet_enclave_chapter_5.cpp.o
+#10 738.1 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletEnclave/zone_the_scarlet_enclave.cpp.o
+#10 738.7 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/DuelHandler.cpp.o
+#10 739.4 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/GroupHandler.cpp.o
+#10 740.6 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_arcanist_doan.cpp.o
+#10 742.0 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_azshir_the_sleepless.cpp.o
+#10 743.4 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/GuildFinderHandler.cpp.o
+#10 743.8 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/GuildHandler.cpp.o
+#10 744.8 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_bloodmage_thalnos.cpp.o
+#10 746.8 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_headless_horseman.cpp.o
+#10 747.9 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_herod.cpp.o
+#10 750.8 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_high_inquisitor_fairbanks.cpp.o
+#10 750.8 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/InspectHandler.cpp.o
+#10 750.8 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_houndmaster_loksey.cpp.o
+#10 753.3 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/ItemHandler.cpp.o
+#10 753.5 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_interrogator_vishas.cpp.o
+#10 753.6 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_mograine_and_whitemane.cpp.o
+#10 755.7 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/LFGHandler.cpp.o
+#10 756.2 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/LootHandler.cpp.o
+#10 756.7 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/boss_scorn.cpp.o
+#10 759.6 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ScarletMonastery/instance_scarlet_monastery.cpp.o
+#10 762.5 [ 52%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_darkmaster_gandling.cpp.o
+#10 762.8 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/MailHandler.cpp.o
+#10 763.7 [ 52%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/MiscHandler.cpp.o
+#10 766.3 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_death_knight_darkreaver.cpp.o
+#10 766.7 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_doctor_theolen_krastinov.cpp.o
+#10 768.8 [ 53%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/MovementHandler.cpp.o
+#10 769.3 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_illucia_barov.cpp.o
+#10 770.9 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_instructor_malicia.cpp.o
+#10 771.9 [ 53%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/NPCHandler.cpp.o
+#10 773.8 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_jandice_barov.cpp.o
+#10 776.3 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_kirtonos_the_herald.cpp.o
+#10 779.2 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_kormok.cpp.o
+#10 779.2 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_lord_alexei_barov.cpp.o
+#10 779.5 [ 53%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_lorekeeper_polkelt.cpp.o
+#10 782.0 [ 53%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/PetHandler.cpp.o
+#10 782.4 [ 54%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/PetitionsHandler.cpp.o
+#10 782.4 [ 54%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_ras_frostwhisper.cpp.o
+#10 784.9 [ 54%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_the_ravenian.cpp.o
+#10 785.9 [ 54%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/boss_vectus.cpp.o
+#10 787.9 [ 54%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Scholomance/instance_scholomance.cpp.o
+#10 788.6 [ 54%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/boss_apothecary_hummel.cpp.o
+#10 791.5 [ 54%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/QueryHandler.cpp.o
+#10 791.8 [ 54%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/QuestHandler.cpp.o
+#10 792.4 [ 54%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/ReferAFriendHandler.cpp.o
+#10 795.6 [ 54%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/boss_baron_ashbury.cpp.o
+#10 797.3 [ 54%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/SkillHandler.cpp.o
+#10 799.9 [ 54%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/SocialHandler.cpp.o
+#10 800.0 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/boss_baron_silverlaine.cpp.o
+#10 800.4 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/boss_commander_springvale.cpp.o
+#10 802.2 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/boss_lord_godfrey.cpp.o
+#10 804.1 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/boss_lord_walden.cpp.o
+#10 805.1 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/SpellHandler.cpp.o
+#10 805.9 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/instance_shadowfang_keep.cpp.o
+#10 807.2 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/TaxiHandler.cpp.o
+#10 808.9 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/TicketHandler.cpp.o
+#10 809.1 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ShadowfangKeep/shadowfang_keep.cpp.o
+#10 812.2 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_balnazzar.cpp.o
+#10 813.1 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/TradeHandler.cpp.o
+#10 814.2 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_baron_rivendare.cpp.o
+#10 815.0 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/VehicleHandler.cpp.o
+#10 815.3 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/VoiceChatHandler.cpp.o
+#10 817.0 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_baroness_anastari.cpp.o
+#10 819.8 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_cannon_master_willey.cpp.o
+#10 819.9 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_magistrate_barthilas.cpp.o
+#10 820.5 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Handlers/VoidStorageHandler.cpp.o
+#10 820.7 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Instances/InstanceSaveMgr.cpp.o
+#10 822.4 [ 55%] Building CXX object src/server/game/CMakeFiles/game.dir/Instances/InstanceScript.cpp.o
+#10 822.6 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_maleki_the_pallid.cpp.o
+#10 827.2 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_nerubenkan.cpp.o
+#10 829.4 [ 55%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_order_of_silver_hand.cpp.o
+#10 830.1 [ 56%] Building CXX object src/server/game/CMakeFiles/game.dir/Loot/Loot.cpp.o
+#10 830.5 [ 56%] Building CXX object src/server/game/CMakeFiles/game.dir/Loot/LootItemStorage.cpp.o
+#10 832.0 [ 56%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_postmaster_malown.cpp.o
+#10 834.2 [ 56%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_ramstein_the_gorger.cpp.o
+#10 834.8 [ 56%] Building CXX object src/server/game/CMakeFiles/game.dir/Loot/LootMgr.cpp.o
+#10 836.6 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/boss_timmy_the_cruel.cpp.o
+#10 837.7 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Mails/Mail.cpp.o
+#10 838.0 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/instance_stratholme.cpp.o
+#10 839.3 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Stratholme/stratholme.cpp.o
+#10 842.7 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/AreaBoundary.cpp.o
+#10 844.5 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/GridMap.cpp.o
+#10 844.8 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/Map.cpp.o
+#10 845.3 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunkenTemple/instance_sunken_temple.cpp.o
+#10 846.0 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunkenTemple/sunken_temple.cpp.o
+#10 848.1 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/MapManager.cpp.o
+#10 848.7 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/boss_brutallus.cpp.o
+#10 849.8 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/boss_eredar_twins.cpp.o
+#10 853.1 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/boss_felmyst.cpp.o
+#10 854.3 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/boss_kalecgos.cpp.o
+#10 854.8 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/boss_kiljaeden.cpp.o
+#10 856.6 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/MapReference.cpp.o
+#10 858.6 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/boss_muru.cpp.o
+#10 860.1 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/instance_sunwell_plateau.cpp.o
+#10 861.3 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/MapScripts.cpp.o
+#10 864.6 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/MapUpdater.cpp.o
+#10 865.7 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/SunwellPlateau/sunwell_plateau.cpp.o
+#10 866.8 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/TerrainMgr.cpp.o
+#10 868.0 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/TheStockade/boss_hogger.cpp.o
+#10 869.0 [ 57%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/TheStockade/boss_lord_overheat.cpp.o
+#10 870.9 [ 57%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/TransportMgr.cpp.o
+#10 871.6 [ 58%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/TheStockade/boss_randolph_moloch.cpp.o
+#10 872.0 [ 58%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/TheStockade/instance_the_stockade.cpp.o
+#10 874.7 [ 58%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ThroneOfTheTides/boss_commander_ulthok.cpp.o
+#10 874.7 [ 58%] Building CXX object src/server/game/CMakeFiles/game.dir/Maps/ZoneScript.cpp.o
+#10 875.1 [ 58%] Building CXX object src/server/game/CMakeFiles/game.dir/Miscellaneous/CommonPredicates.cpp.o
+#10 876.8 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/AbstractPursuer.cpp.o
+#10 877.1 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ThroneOfTheTides/boss_lady_nazjar.cpp.o
+#10 878.4 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MotionMaster.cpp.o
+#10 879.0 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ThroneOfTheTides/boss_mindbender_gursha.cpp.o
+#10 881.6 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ThroneOfTheTides/boss_ozumat.cpp.o
+#10 881.7 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ThroneOfTheTides/instance_throne_of_the_tides.cpp.o
+#10 882.7 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ThroneOfTheTides/throne_of_the_tides.cpp.o
+#10 885.6 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerator.cpp.o
+#10 887.4 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Uldaman/boss_archaedas.cpp.o
+#10 887.7 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementPacketSender.cpp.o
+#10 888.5 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Uldaman/boss_ironaya.cpp.o
+#10 889.5 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Uldaman/instance_uldaman.cpp.o
+#10 890.1 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementStructures.cpp.o
+#10 890.2 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/Uldaman/uldaman.cpp.o
+#10 891.1 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/boss_akilzon.cpp.o
+#10 892.8 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/PathGenerator.cpp.o
+#10 895.2 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/ChaseMovementGenerator.cpp.o
+#10 896.1 [ 59%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/ConfusedMovementGenerator.cpp.o
+#10 897.0 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/boss_daakara.cpp.o
+#10 897.7 [ 59%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/boss_halazzi.cpp.o
+#10 898.4 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/boss_hexlord.cpp.o
+#10 899.9 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/CyclicMovementGenerator.cpp.o
+#10 900.3 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/FleeingMovementGenerator.cpp.o
+#10 900.3 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/FlightPathMovementGenerator.cpp.o
+#10 901.2 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/boss_janalai.cpp.o
+#10 902.5 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/boss_nalorakk.cpp.o
+#10 902.9 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/FollowMovementGenerator.cpp.o
+#10 905.3 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/instance_zulaman.cpp.o
+#10 905.6 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulAman/zulaman.cpp.o
+#10 906.7 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/FormationMovementGenerator.cpp.o
+#10 907.1 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_bloodlord_mandokir.cpp.o
+#10 908.4 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/GenericMovementGenerator.cpp.o
+#10 908.7 [ 60%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/HomeMovementGenerator.cpp.o
+#10 908.9 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_grilek.cpp.o
+#10 911.0 [ 60%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_hazzarah.cpp.o
+#10 911.3 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/IdleMovementGenerator.cpp.o
+#10 911.4 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/PointMovementGenerator.cpp.o
+#10 913.3 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/RandomMovementGenerator.cpp.o
+#10 913.4 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/SplineChainMovementGenerator.cpp.o
+#10 913.9 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_high_priest_venoxis.cpp.o
+#10 914.0 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/MovementGenerators/WaypointMovementGenerator.cpp.o
+#10 915.6 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_high_priestess_kilnara.cpp.o
+#10 919.3 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_jindo_the_godbreaker.cpp.o
+#10 919.8 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/Spline/MoveSpline.cpp.o
+#10 920.0 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_renataki.cpp.o
+#10 920.8 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/Spline/MoveSplineInit.cpp.o
+#10 922.6 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_wushoolay.cpp.o
+#10 923.7 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/Spline/MovementPacketBuilder.cpp.o
+#10 923.8 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/boss_zanzil.cpp.o
+#10 925.4 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/Spline/MovementUtil.cpp.o
+#10 926.0 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/Spline/Spline.cpp.o
+#10 926.2 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/Movement/Waypoints/WaypointManager.cpp.o
+#10 927.7 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/OutdoorPvP/OutdoorPvP.cpp.o
+#10 928.8 [ 61%] Building CXX object src/server/game/CMakeFiles/game.dir/OutdoorPvP/OutdoorPvPMgr.cpp.o
+#10 929.8 [ 61%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/instance_zulgurub.cpp.o
+#10 932.5 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/EasternKingdoms/ZulGurub/zulgurub.cpp.o
+#10 932.6 [ 62%] Building CXX object src/server/game/CMakeFiles/game.dir/Petitions/PetitionMgr.cpp.o
+#10 935.0 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Events/childrens_week.cpp.o
+#10 935.6 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Events/events_script_loader.cpp.o
+#10 937.9 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Events/fireworks_show.cpp.o
+#10 937.9 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/kalimdor_script_loader.cpp.o
+#10 938.0 [ 62%] Building CXX object src/server/game/CMakeFiles/game.dir/Phasing/PhaseShift.cpp.o
+#10 938.1 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_ashenvale.cpp.o
+#10 940.3 [ 62%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_azuremyst_isle.cpp.o
+#10 940.4 [ 63%] Building CXX object src/server/game/CMakeFiles/game.dir/Phasing/PhasingHandler.cpp.o
+#10 941.0 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_bloodmyst_isle.cpp.o
+#10 941.5 [ 63%] Building CXX object src/server/game/CMakeFiles/game.dir/Pools/PoolMgr.cpp.o
+#10 943.5 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_desolace.cpp.o
+#10 944.7 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_durotar.cpp.o
+#10 946.4 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_felwood.cpp.o
+#10 947.9 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_moonglade.cpp.o
+#10 948.1 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_mount_hyjal.cpp.o
+#10 950.1 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_mulgore.cpp.o
+#10 950.8 [ 63%] Building CXX object src/server/game/CMakeFiles/game.dir/Pools/QuestPools.cpp.o
+#10 952.7 [ 63%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_northern_barrens.cpp.o
+#10 953.4 [ 63%] Building CXX object src/server/game/CMakeFiles/game.dir/Quests/QuestDef.cpp.o
+#10 953.8 [ 63%] Building CXX object src/server/game/CMakeFiles/game.dir/Reputation/ReputationMgr.cpp.o
+#10 955.7 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_silithus.cpp.o
+#10 958.8 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_southern_barrens.cpp.o
+#10 959.0 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptMgr.cpp.o
+#10 960.2 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptReloadMgr.cpp.o
+#10 960.8 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptSystem.cpp.o
+#10 961.2 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_tanaris.cpp.o
+#10 963.4 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllBattlegroundScript.cpp.o
+#10 964.0 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_thunder_bluff.cpp.o
+#10 965.3 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllCommandScript.cpp.o
+#10 966.4 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_uldum.cpp.o
+#10 967.1 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllCreatureScript.cpp.o
+#10 968.8 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllGameObjectScript.cpp.o
+#10 968.9 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllItemScript.cpp.o
+#10 970.6 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_ungoro_crater.cpp.o
+#10 970.6 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/zone_winterspring.cpp.o
+#10 970.7 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/BlackfathomDeeps/blackfathom_deeps.cpp.o
+#10 972.8 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/BlackfathomDeeps/boss_aku_mai.cpp.o
+#10 973.4 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllMapScript.cpp.o
+#10 973.7 [ 64%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/AllSpellScript.cpp.o
+#10 975.4 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/BlackfathomDeeps/boss_gelihast.cpp.o
+#10 975.6 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/BlackfathomDeeps/boss_kelris.cpp.o
+#10 975.6 [ 64%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/BlackfathomDeeps/instance_blackfathom_deeps.cpp.o
+#10 978.1 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/ArenaScript.cpp.o
+#10 978.1 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/GameEventScript.cpp.o
+#10 978.5 [ 65%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/boss_anetheron.cpp.o
+#10 980.2 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/GlobalScript.cpp.o
+#10 980.2 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/LootScript.cpp.o
+#10 982.0 [ 65%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/boss_archimonde.cpp.o
+#10 982.1 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/MailScript.cpp.o
+#10 982.1 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/ModuleScript.cpp.o
+#10 984.0 [ 65%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/boss_azgalor.cpp.o
+#10 984.2 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/PetScript.cpp.o
+#10 985.6 [ 65%] Building CXX object src/server/game/CMakeFiles/game.dir/Scripting/ScriptDefines/WorldObjectScript.cpp.o
+#10 986.2 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/boss_kazrogal.cpp.o
+#10 986.6 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/GameClient.cpp.o
+#10 987.6 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/boss_rage_winterchill.cpp.o
+#10 988.8 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/hyjal.cpp.o
+#10 990.0 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packet.cpp.o
+#10 990.6 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/WorldPacket.cpp.o
+#10 991.8 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/hyjalAI.cpp.o
+#10 995.3 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/WorldSession.cpp.o
+#10 996.0 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/WorldSocket.cpp.o
+#10 998.3 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/hyjal_trash.cpp.o
+#10 998.8 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/BattleForMountHyjal/instance_hyjal.cpp.o
+#10 1002.0 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/WorldSocketMgr.cpp.o
+#10 1005.1 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/boss_chrono_lord_epoch.cpp.o
+#10 1008.0 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/boss_infinite_corruptor.cpp.o
+#10 1009.5 [ 66%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/AchievementPackets.cpp.o
+#10 1010.8 [ 66%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/boss_mal_ganis.cpp.o
+#10 1011.6 [ 67%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/ArchaeologyPackets.cpp.o
+#10 1012.8 [ 67%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/AuthenticationPackets.cpp.o
+#10 1013.6 [ 67%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/boss_meathook.cpp.o
+#10 1013.8 [ 67%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/boss_salramm_the_fleshcrafter.cpp.o
+#10 1014.1 [ 67%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/BattlegroundPackets.cpp.o
+#10 1016.3 [ 67%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/culling_of_stratholme.cpp.o
+#10 1016.4 [ 67%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/CharacterPackets.cpp.o
+#10 1017.2 [ 67%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/ChatPackets.cpp.o
+#10 1018.0 [ 67%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/instance_culling_of_stratholme.cpp.o
+#10 1019.5 [ 67%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/CullingOfStratholme/npc_arthas.cpp.o
+#10 1023.4 [ 67%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/DragonSoul/boss_madness_of_deathwing.cpp.o
+#10 1024.3 [ 67%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/CombatLogPackets.cpp.o
+#10 1026.4 [ 68%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/DragonSoul/instance_dragon_soul.cpp.o
+#10 1026.8 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/CombatPackets.cpp.o
+#10 1029.1 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/GuildPackets.cpp.o
+#10 1029.4 [ 68%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EndTime/boss_echo_of_jaina.cpp.o
+#10 1029.4 [ 68%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EndTime/boss_murozond.cpp.o
+#10 1034.7 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/InspectPackets.cpp.o
+#10 1035.1 [ 68%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EndTime/end_time.cpp.o
+#10 1036.1 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/InstancePackets.cpp.o
+#10 1037.0 [ 68%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EndTime/instance_end_time.cpp.o
+#10 1038.1 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/ItemPackets.cpp.o
+#10 1038.4 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/ItemPacketsCommon.cpp.o
+#10 1038.6 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/LFGPackets.cpp.o
+#10 1040.1 [ 68%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EscapeFromDurnholdeKeep/boss_captain_skarloc.cpp.o
+#10 1040.7 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/LFGPacketsCommon.cpp.o
+#10 1041.2 [ 68%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/LootPackets.cpp.o
+#10 1042.6 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/MiscPackets.cpp.o
+#10 1042.7 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EscapeFromDurnholdeKeep/boss_epoch_hunter.cpp.o
+#10 1043.5 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EscapeFromDurnholdeKeep/boss_leutenant_drake.cpp.o
+#10 1044.0 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/MovementPackets.cpp.o
+#10 1045.3 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/NPCPackets.cpp.o
+#10 1045.5 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EscapeFromDurnholdeKeep/instance_old_hillsbrad.cpp.o
+#10 1046.4 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/PacketUtilities.cpp.o
+#10 1047.2 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/EscapeFromDurnholdeKeep/old_hillsbrad.cpp.o
+#10 1048.2 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/PartyPackets.cpp.o
+#10 1048.4 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/HourOfTwilight/instance_hour_of_twilight.cpp.o
+#10 1050.3 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/PetPackets.cpp.o
+#10 1051.4 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/TheBlackMorass/boss_aeonus.cpp.o
+#10 1051.6 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/QueryPackets.cpp.o
+#10 1052.3 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/QuestPackets.cpp.o
+#10 1052.6 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/TheBlackMorass/boss_chrono_lord_deja.cpp.o
+#10 1054.3 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/TheBlackMorass/boss_temporus.cpp.o
+#10 1054.4 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/ReforgePackets.cpp.o
+#10 1055.3 [ 69%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/TheBlackMorass/instance_the_black_morass.cpp.o
+#10 1055.4 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/SpellPackets.cpp.o
+#10 1056.8 [ 69%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/SystemPackets.cpp.o
+#10 1057.2 [ 70%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/TheBlackMorass/the_black_morass.cpp.o
+#10 1058.9 [ 70%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/CavernsOfTime/WellOfEternity/instance_well_of_eternity.cpp.o
+#10 1059.8 [ 70%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/TalentPackets.cpp.o
+#10 1061.6 [ 70%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/TicketPackets.cpp.o
+#10 1061.8 [ 70%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/DireMaul/instance_dire_maul.cpp.o
+#10 1062.0 [ 70%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/TotemPackets.cpp.o
+#10 1063.0 [ 70%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/boss_alysrazor.cpp.o
+#10 1063.9 [ 70%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/TradePackets.cpp.o
+#10 1064.4 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/VehiclePackets.cpp.o
+#10 1064.6 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/WhoPackets.cpp.o
+#10 1066.3 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/boss_baleroc.cpp.o
+#10 1066.5 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Packets/WorldStatePackets.cpp.o
+#10 1066.9 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/boss_lord_rhyolith.cpp.o
+#10 1068.4 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Protocol/Opcodes.cpp.o
+#10 1068.9 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/boss_majordomo_staghelm.cpp.o
+#10 1073.9 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Server/Protocol/PacketLog.cpp.o
+#10 1076.0 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/SkillDiscovery.cpp.o
+#10 1076.9 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/boss_ragnaros_firelands.cpp.o
+#10 1077.2 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/SkillExtraItems.cpp.o
+#10 1082.9 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/firelands.cpp.o
+#10 1083.7 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/Archaeology/Archaeology.cpp.o
+#10 1085.7 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Firelands/instance_firelands.cpp.o
+#10 1086.6 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/Archaeology/ArchaeologyMgr.cpp.o
+#10 1089.8 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_ammunae.cpp.o
+#10 1093.6 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_anraphet.cpp.o
+#10 1094.2 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/Archaeology/ArchaeologyProjects.cpp.o
+#10 1094.6 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_earthrager_ptah.cpp.o
+#10 1098.8 [ 71%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/Archaeology/ArchaeologySites.cpp.o
+#10 1099.4 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_isiset.cpp.o
+#10 1100.4 [ 71%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_rajh.cpp.o
+#10 1103.8 [ 72%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_setesh.cpp.o
+#10 1104.9 [ 72%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/Archaeology/SitePolygonGeometry.cpp.o
+#10 1105.5 [ 72%] Building CXX object src/server/game/CMakeFiles/game.dir/Skills/Archaeology/SitePolygonGraph.cpp.o
+#10 1107.2 [ 72%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/boss_temple_guardian_anhuur.cpp.o
+#10 1107.3 [ 72%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/Spell.cpp.o
+#10 1107.5 [ 72%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/halls_of_origination.cpp.o
+#10 1112.1 [ 72%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/SpellEffects.cpp.o
+#10 1113.7 [ 72%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/HallsOfOrigination/instance_halls_of_origination.cpp.o
+#10 1114.1 [ 73%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/SpellHistory.cpp.o
+#10 1117.7 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/LostCityOfTheTolvir/boss_general_husam.cpp.o
+#10 1119.6 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/LostCityOfTheTolvir/boss_high_prophet_barim.cpp.o
+#10 1123.4 [ 73%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/SpellInfo.cpp.o
+#10 1125.3 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/LostCityOfTheTolvir/boss_lockmaw_and_augh.cpp.o
+#10 1128.5 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/LostCityOfTheTolvir/boss_siamat.cpp.o
+#10 1130.3 [ 73%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/SpellMgr.cpp.o
+#10 1130.3 [ 73%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/SpellScript.cpp.o
+#10 1133.7 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/LostCityOfTheTolvir/instance_lost_city_of_the_tolvir.cpp.o
+#10 1134.7 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/LostCityOfTheTolvir/lost_city_of_the_tolvir.cpp.o
+#10 1137.0 [ 73%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/Auras/SpellAuraEffects.cpp.o
+#10 1137.4 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Maraudon/boss_celebras_the_cursed.cpp.o
+#10 1139.9 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Maraudon/boss_landslide.cpp.o
+#10 1141.2 [ 73%] Building CXX object src/server/game/CMakeFiles/game.dir/Spells/Auras/SpellAuras.cpp.o
+#10 1142.4 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Maraudon/boss_noxxion.cpp.o
+#10 1145.1 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Maraudon/boss_princess_theradras.cpp.o
+#10 1147.7 [ 73%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/Maraudon/instance_maraudon.cpp.o
+#10 1150.7 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/OnyxiasLair/boss_onyxia.cpp.o
+#10 1152.0 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/OnyxiasLair/instance_onyxias_lair.cpp.o
+#10 1152.2 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Storages/WhoListStorage.cpp.o
+#10 1154.1 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RagefireChasm/instance_ragefire_chasm.cpp.o
+#10 1155.0 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Texts/ChatTextBuilder.cpp.o
+#10 1155.3 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenDowns/boss_amnennar_the_coldbringer.cpp.o
+#10 1155.7 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Texts/CreatureTextMgr.cpp.o
+#10 1156.9 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenDowns/boss_glutton.cpp.o
+#10 1158.2 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Tickets/TicketMgr.cpp.o
+#10 1158.7 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Time/GameTime.cpp.o
+#10 1159.6 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenDowns/boss_mordresh_fire_eye.cpp.o
+#10 1160.8 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenDowns/boss_tuten_kash.cpp.o
+#10 1162.4 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Time/UpdateTime.cpp.o
+#10 1163.4 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenDowns/instance_razorfen_downs.cpp.o
+#10 1165.8 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Tools/CharacterDatabaseCleaner.cpp.o
+#10 1165.9 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenDowns/razorfen_downs.cpp.o
+#10 1166.3 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenKraul/instance_razorfen_kraul.cpp.o
+#10 1167.5 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RazorfenKraul/razorfen_kraul.cpp.o
+#10 1169.1 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Tools/PlayerDump.cpp.o
+#10 1169.2 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/boss_ayamiss.cpp.o
+#10 1170.1 [ 74%] Building CXX object src/server/game/CMakeFiles/game.dir/Warden/Warden.cpp.o
+#10 1171.9 [ 74%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/boss_buru.cpp.o
+#10 1172.5 [ 75%] Building CXX object src/server/game/CMakeFiles/game.dir/Warden/WardenCheckMgr.cpp.o
+#10 1175.2 [ 75%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/boss_kurinnaxx.cpp.o
+#10 1175.6 [ 75%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/boss_moam.cpp.o
+#10 1178.0 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/boss_ossirian.cpp.o
+#10 1178.5 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/boss_rajaxx.cpp.o
+#10 1178.7 [ 76%] Building CXX object src/server/game/CMakeFiles/game.dir/Warden/WardenMac.cpp.o
+#10 1178.9 [ 76%] Building CXX object src/server/game/CMakeFiles/game.dir/Warden/WardenWin.cpp.o
+#10 1181.3 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/RuinsOfAhnQiraj/instance_ruins_of_ahnqiraj.cpp.o
+#10 1181.6 [ 76%] Building CXX object src/server/game/CMakeFiles/game.dir/Weather/Weather.cpp.o
+#10 1185.3 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_bug_trio.cpp.o
+#10 1186.0 /src/src/server/game/Warden/WardenWin.cpp: In member function 'virtual void WardenWin::HandleData(ByteBuffer&)':
+#10 1186.0 /src/src/server/game/Warden/WardenWin.cpp:394:27: warning: argument 2 null where non-null expected [-Wnonnull]
+#10 1186.0   394 |                 if (memcmp(buff.contents() + buff.rpos(), rs->Result.ToByteArray<0>(false).data(), rd->Length) != 0)
+#10 1186.0       |                     ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 1186.0 In file included from /usr/include/c++/11/cstring:42,
+#10 1186.0                  from /src/src/server/shared/Packets/ByteBuffer.h:26,
+#10 1186.0                  from /src/src/server/game/Entities/Object/Updates/UpdateMask.h:23,
+#10 1186.0                  from /src/src/server/game/Entities/Object/Object.h:36,
+#10 1186.0                  from /src/src/server/game/Entities/Unit/Unit.h:21,
+#10 1186.0                  from /src/src/server/game/Entities/Creature/Creature.h:21,
+#10 1186.0                  from /src/src/server/game/PrecompiledHeaders/gamePCH.h:20,
+#10 1186.0                  from /src/build/src/server/game/CMakeFiles/game.dir/cmake_pch.hxx:5,
+#10 1186.0                  from <command-line>:
+#10 1186.0 /usr/include/string.h:64:12: note: in a call to function 'int memcmp(const void*, const void*, size_t)' declared 'nonnull'
+#10 1186.0    64 | extern int memcmp (const void *__s1, const void *__s2, size_t __n)
+#10 1186.0       |            ^~~~~~
+#10 1186.0 /src/src/server/game/Warden/WardenWin.cpp:473:27: warning: argument 2 null where non-null expected [-Wnonnull]
+#10 1186.0   473 |                 if (memcmp(buff.contents() + buff.rpos(), rs->Result.ToByteArray<0>(false).data(), 20) != 0) // SHA1
+#10 1186.0       |                     ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#10 1186.0 In file included from /usr/include/c++/11/cstring:42,
+#10 1186.0                  from /src/src/server/shared/Packets/ByteBuffer.h:26,
+#10 1186.0                  from /src/src/server/game/Entities/Object/Updates/UpdateMask.h:23,
+#10 1186.0                  from /src/src/server/game/Entities/Object/Object.h:36,
+#10 1186.0                  from /src/src/server/game/Entities/Unit/Unit.h:21,
+#10 1186.0                  from /src/src/server/game/Entities/Creature/Creature.h:21,
+#10 1186.0                  from /src/src/server/game/PrecompiledHeaders/gamePCH.h:20,
+#10 1186.0                  from /src/build/src/server/game/CMakeFiles/game.dir/cmake_pch.hxx:5,
+#10 1186.0                  from <command-line>:
+#10 1186.0 /usr/include/string.h:64:12: note: in a call to function 'int memcmp(const void*, const void*, size_t)' declared 'nonnull'
+#10 1186.0    64 | extern int memcmp (const void *__s1, const void *__s2, size_t __n)
+#10 1186.0       |            ^~~~~~
+#10 1186.4 [ 76%] Building CXX object src/server/game/CMakeFiles/game.dir/Weather/WeatherMgr.cpp.o
+#10 1187.8 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_cthun.cpp.o
+#10 1188.2 [ 76%] Building CXX object src/server/game/CMakeFiles/game.dir/World/World.cpp.o
+#10 1188.5 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_fankriss.cpp.o
+#10 1191.0 [ 76%] Building CXX object src/server/game/CMakeFiles/game.dir/World/WorldStates/WorldStateMgr.cpp.o
+#10 1191.9 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_huhuran.cpp.o
+#10 1192.7 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_ouro.cpp.o
+#10 1194.8 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_sartura.cpp.o
+#10 1195.3 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_skeram.cpp.o
+#10 1198.0 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_twinemperors.cpp.o
+#10 1198.8 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/boss_viscidus.cpp.o
+#10 1198.8 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/instance_temple_of_ahnqiraj.cpp.o
+#10 1201.4 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/TempleOfAhnQiraj/mob_anubisath_sentinel.cpp.o
+#10 1201.4 [ 76%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ThroneOfTheFourWinds/boss_alakir.cpp.o
+#10 1201.5 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ThroneOfTheFourWinds/boss_conclave_of_wind.cpp.o
+#10 1204.2 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ThroneOfTheFourWinds/instance_throne_of_the_four_winds.cpp.o
+#10 1207.7 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ThroneOfTheFourWinds/throne_of_the_four_winds.cpp.o
+#10 1208.7 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/VortexPinnacle/boss_altairus.cpp.o
+#10 1210.4 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/VortexPinnacle/boss_asaad.cpp.o
+#10 1211.3 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/VortexPinnacle/boss_grand_vizier_ertan.cpp.o
+#10 1214.2 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/VortexPinnacle/instance_vortex_pinnacle.cpp.o
+#10 1215.1 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/VortexPinnacle/vortex_pinnacle.cpp.o
+#10 1217.1 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_kresh.cpp.o
+#10 1219.0 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_lady_anacondra.cpp.o
+#10 1221.0 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_lord_cobrahn.cpp.o
+#10 1221.9 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_lord_pythas.cpp.o
+#10 1223.7 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_lord_serpentis.cpp.o
+#10 1224.1 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_skum.cpp.o
+#10 1224.8 [ 77%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/boss_verdan_the_everliving.cpp.o
+#10 1226.4 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/instance_wailing_caverns.cpp.o
+#10 1227.0 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/WailingCaverns/wailing_caverns.cpp.o
+#10 1227.4 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ZulFarrak/boss_zum_rah.cpp.o
+#10 1229.3 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ZulFarrak/instance_zulfarrak.cpp.o
+#10 1229.8 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Kalimdor/ZulFarrak/zulfarrak.cpp.o
+#10 1230.3 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/kezan.cpp.o
+#10 1232.6 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/maelstrom_script_loader.cpp.o
+#10 1232.7 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/zone_deepholm.cpp.o
+#10 1232.8 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/Stonecore/boss_corborus.cpp.o
+#10 1235.1 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/Stonecore/boss_high_priestess_azil.cpp.o
+#10 1236.1 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/Stonecore/boss_ozruk.cpp.o
+#10 1237.3 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/Stonecore/boss_slabhide.cpp.o
+#10 1240.9 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/Stonecore/instance_stonecore.cpp.o
+#10 1241.6 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Maelstrom/Stonecore/stonecore.cpp.o
+#10 1241.7 [ 78%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/northrend_script_loader.cpp.o
+#10 1244.5 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_borean_tundra.cpp.o
+#10 1245.2 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_crystalsong_forest.cpp.o
+#10 1246.7 [ 79%] Linking CXX static library libgame.a
+#10 1247.0 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_dalaran.cpp.o
+#10 1247.8 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_dragonblight.cpp.o
+#10 1250.1 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_grizzly_hills.cpp.o
+#10 1251.6 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_howling_fjord.cpp.o
+#10 1252.3 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_icecrown.cpp.o
+#10 1255.1 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_sholazar_basin.cpp.o
+#10 1255.3 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_storm_peaks.cpp.o
+#10 1255.4 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_wintergrasp.cpp.o
+#10 1261.1 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/zone_zuldrak.cpp.o
+#10 1261.3 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/Ahnkahet/boss_amanitar.cpp.o
+#10 1265.1 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/Ahnkahet/boss_elder_nadox.cpp.o
+#10 1265.4 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/Ahnkahet/boss_herald_volazj.cpp.o
+#10 1266.7 [ 79%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/Ahnkahet/boss_jedoga_shadowseeker.cpp.o
+#10 1268.5 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/Ahnkahet/boss_prince_taldaram.cpp.o
+#10 1268.5 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/Ahnkahet/instance_ahnkahet.cpp.o
+#10 1270.1 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/AzjolNerub/boss_anubarak.cpp.o
+#10 1272.4 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/AzjolNerub/boss_hadronox.cpp.o
+#10 1272.8 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/AzjolNerub/boss_krikthir_the_gatewatcher.cpp.o
+#10 1274.9 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/AzjolNerub/AzjolNerub/instance_azjol_nerub.cpp.o
+#10 1278.8 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/ObsidianSanctum/boss_sartharion.cpp.o
+#10 1278.9 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/ObsidianSanctum/instance_obsidian_sanctum.cpp.o
+#10 1279.1 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/ObsidianSanctum/obsidian_sanctum.cpp.o
+#10 1281.6 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/RubySanctum/boss_baltharus_the_warborn.cpp.o
+#10 1282.0 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/RubySanctum/boss_general_zarithrian.cpp.o
+#10 1282.3 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/RubySanctum/boss_halion.cpp.o
+#10 1284.8 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/RubySanctum/boss_saviana_ragefire.cpp.o
+#10 1285.0 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/RubySanctum/instance_ruby_sanctum.cpp.o
+#10 1289.1 [ 80%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/ChamberOfAspects/RubySanctum/ruby_sanctum.cpp.o
+#10 1289.6 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheChampion/boss_argent_challenge.cpp.o
+#10 1292.0 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheChampion/boss_black_knight.cpp.o
+#10 1292.2 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheChampion/boss_grand_champions.cpp.o
+#10 1293.8 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheChampion/instance_trial_of_the_champion.cpp.o
+#10 1294.7 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheChampion/trial_of_the_champion.cpp.o
+#10 1295.2 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/boss_anubarak_trial.cpp.o
+#10 1297.8 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/boss_faction_champions.cpp.o
+#10 1299.7 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/boss_lord_jaraxxus.cpp.o
+#10 1300.2 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/boss_northrend_beasts.cpp.o
+#10 1304.8 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/boss_twin_valkyr.cpp.o
+#10 1305.0 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/instance_trial_of_the_crusader.cpp.o
+#10 1306.7 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/CrusadersColiseum/TrialOfTheCrusader/trial_of_the_crusader.cpp.o
+#10 1310.0 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/DraktharonKeep/boss_king_dred.cpp.o
+#10 1310.2 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/DraktharonKeep/boss_novos.cpp.o
+#10 1312.2 [ 81%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/DraktharonKeep/boss_tharon_ja.cpp.o
+#10 1314.1 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/DraktharonKeep/boss_trollgore.cpp.o
+#10 1314.8 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/DraktharonKeep/instance_drak_tharon_keep.cpp.o
+#10 1315.9 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/ForgeOfSouls/boss_bronjahm.cpp.o
+#10 1317.8 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/ForgeOfSouls/boss_devourer_of_souls.cpp.o
+#10 1318.5 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/ForgeOfSouls/forge_of_souls.cpp.o
+#10 1321.2 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/ForgeOfSouls/instance_forge_of_souls.cpp.o
+#10 1321.4 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/HallsOfReflection/boss_falric.cpp.o
+#10 1323.5 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/HallsOfReflection/boss_horAI.cpp.o
+#10 1324.4 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/HallsOfReflection/boss_marwyn.cpp.o
+#10 1324.7 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/HallsOfReflection/halls_of_reflection.cpp.o
+#10 1326.8 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/HallsOfReflection/instance_halls_of_reflection.cpp.o
+#10 1328.5 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/PitOfSaron/boss_forgemaster_garfrost.cpp.o
+#10 1330.8 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/PitOfSaron/boss_krickandick.cpp.o
+#10 1331.8 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/PitOfSaron/boss_scourgelord_tyrannus.cpp.o
+#10 1332.3 [ 82%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/PitOfSaron/instance_pit_of_saron.cpp.o
+#10 1335.4 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/FrozenHalls/PitOfSaron/pit_of_saron.cpp.o
+#10 1335.8 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Gundrak/boss_drakkari_colossus.cpp.o
+#10 1336.1 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Gundrak/boss_eck.cpp.o
+#10 1338.9 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Gundrak/boss_gal_darah.cpp.o
+#10 1339.1 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Gundrak/boss_moorabi.cpp.o
+#10 1340.2 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Gundrak/boss_slad_ran.cpp.o
+#10 1342.7 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Gundrak/instance_gundrak.cpp.o
+#10 1342.9 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_blood_prince_council.cpp.o
+#10 1343.7 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_blood_queen_lana_thel.cpp.o
+#10 1346.2 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_deathbringer_saurfang.cpp.o
+#10 1350.7 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_festergut.cpp.o
+#10 1351.0 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_icecrown_gunship_battle.cpp.o
+#10 1353.7 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_lady_deathwhisper.cpp.o
+#10 1355.5 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_lord_marrowgar.cpp.o
+#10 1360.5 [ 83%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_professor_putricide.cpp.o
+#10 1361.0 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_rotface.cpp.o
+#10 1362.7 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_sindragosa.cpp.o
+#10 1368.0 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_the_lich_king.cpp.o
+#10 1368.2 [ 84%] Built target game
+#10 1368.2 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/boss_valithria_dreamwalker.cpp.o
+#10 1370.1 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/icecrown_citadel.cpp.o
+#10 1371.0 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/icecrown_citadel_teleport.cpp.o
+#10 1373.9 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IcecrownCitadel/instance_icecrown_citadel.cpp.o
+#10 1376.4 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IsleOfConquest/boss_ioc_horde_alliance.cpp.o
+#10 1377.1 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/IsleOfConquest/isle_of_conquest.cpp.o
+#10 1378.7 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_anubrekhan.cpp.o
+#10 1379.3 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_faerlina.cpp.o
+#10 1381.6 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_four_horsemen.cpp.o
+#10 1381.9 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_gluth.cpp.o
+#10 1382.1 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_gothik.cpp.o
+#10 1382.2 [ 84%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_grobbulus.cpp.o
+#10 1385.5 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_heigan.cpp.o
+#10 1386.0 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_kelthuzad.cpp.o
+#10 1388.9 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_loatheb.cpp.o
+#10 1389.1 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_maexxna.cpp.o
+#10 1390.0 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_noth.cpp.o
+#10 1391.7 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_patchwerk.cpp.o
+#10 1392.1 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_razuvious.cpp.o
+#10 1392.6 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_sapphiron.cpp.o
+#10 1393.2 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/boss_thaddius.cpp.o
+#10 1394.8 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/instance_naxxramas.cpp.o
+#10 1394.9 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Naxxramas/naxxramas.cpp.o
+#10 1397.6 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/EyeOfEternity/boss_malygos.cpp.o
+#10 1397.7 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/EyeOfEternity/instance_eye_of_eternity.cpp.o
+#10 1398.0 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/boss_anomalus.cpp.o
+#10 1398.1 [ 85%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/boss_commander_stoutbeard.cpp.o
+#10 1400.4 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/boss_keristrasza.cpp.o
+#10 1400.6 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/boss_magus_telestra.cpp.o
+#10 1401.3 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/boss_nexus_commanders.cpp.o
+#10 1403.4 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/boss_ormorok.cpp.o
+#10 1404.1 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Nexus/instance_nexus.cpp.o
+#10 1404.2 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Oculus/boss_drakos.cpp.o
+#10 1407.2 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Oculus/boss_eregos.cpp.o
+#10 1407.3 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Oculus/boss_urom.cpp.o
+#10 1407.4 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Oculus/boss_varos.cpp.o
+#10 1407.8 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Oculus/instance_oculus.cpp.o
+#10 1410.3 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Nexus/Oculus/oculus.cpp.o
+#10 1410.8 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfLightning/boss_general_bjarngrim.cpp.o
+#10 1411.0 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfLightning/boss_ionar.cpp.o
+#10 1411.9 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfLightning/boss_loken.cpp.o
+#10 1413.7 [ 86%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfLightning/boss_volkhan.cpp.o
+#10 1415.7 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfLightning/instance_halls_of_lightning.cpp.o
+#10 1415.7 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfStone/boss_krystallus.cpp.o
+#10 1416.5 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfStone/boss_maiden_of_grief.cpp.o
+#10 1418.4 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfStone/boss_sjonnir.cpp.o
+#10 1418.9 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfStone/halls_of_stone.cpp.o
+#10 1419.2 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/HallsOfStone/instance_halls_of_stone.cpp.o
+#10 1419.5 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_algalon_the_observer.cpp.o
+#10 1421.4 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_assembly_of_iron.cpp.o
+#10 1422.0 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_auriaya.cpp.o
+#10 1422.3 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_flame_leviathan.cpp.o
+#10 1425.8 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_freya.cpp.o
+#10 1426.5 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_general_vezax.cpp.o
+#10 1427.8 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_hodir.cpp.o
+#10 1429.1 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_ignis.cpp.o
+#10 1430.4 [ 87%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_kologarn.cpp.o
+#10 1431.1 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_mimiron.cpp.o
+#10 1433.1 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_razorscale.cpp.o
+#10 1433.4 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_thorim.cpp.o
+#10 1437.5 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_xt002.cpp.o
+#10 1438.9 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/boss_yogg_saron.cpp.o
+#10 1442.9 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/Ulduar/Ulduar/instance_ulduar.cpp.o
+#10 1444.5 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardeKeep/boss_ingvar_the_plunderer.cpp.o
+#10 1445.8 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardeKeep/boss_keleseth.cpp.o
+#10 1446.7 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardeKeep/boss_skarvald_dalronn.cpp.o
+#10 1449.1 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardeKeep/instance_utgarde_keep.cpp.o
+#10 1449.4 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardeKeep/utgarde_keep.cpp.o
+#10 1449.6 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardePinnacle/boss_palehoof.cpp.o
+#10 1453.3 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardePinnacle/boss_skadi.cpp.o
+#10 1454.0 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardePinnacle/boss_svala.cpp.o
+#10 1454.5 [ 88%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardePinnacle/boss_ymiron.cpp.o
+#10 1455.6 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/UtgardeKeep/UtgardePinnacle/instance_utgarde_pinnacle.cpp.o
+#10 1457.6 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VaultOfArchavon/boss_archavon.cpp.o
+#10 1458.0 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VaultOfArchavon/boss_emalon.cpp.o
+#10 1458.5 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VaultOfArchavon/boss_koralon.cpp.o
+#10 1460.8 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VaultOfArchavon/boss_toravon.cpp.o
+#10 1460.9 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VaultOfArchavon/instance_vault_of_archavon.cpp.o
+#10 1461.0 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_cyanigosa.cpp.o
+#10 1462.8 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_erekem.cpp.o
+#10 1463.6 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_ichoron.cpp.o
+#10 1463.8 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_lavanthor.cpp.o
+#10 1465.3 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_moragg.cpp.o
+#10 1467.1 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_xevozz.cpp.o
+#10 1467.7 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/boss_zuramat.cpp.o
+#10 1468.9 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/instance_violet_hold.cpp.o
+#10 1470.3 [ 89%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Northrend/VioletHold/violet_hold.cpp.o
+#10 1471.1 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/OutdoorPvP/OutdoorPvPHP.cpp.o
+#10 1471.7 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/OutdoorPvP/OutdoorPvPNA.cpp.o
+#10 1474.3 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/OutdoorPvP/OutdoorPvPSI.cpp.o
+#10 1474.3 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/OutdoorPvP/OutdoorPvPScriptLoader.cpp.o
+#10 1476.4 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/OutdoorPvP/OutdoorPvPTF.cpp.o
+#10 1477.1 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/OutdoorPvP/OutdoorPvPZM.cpp.o
+#10 1478.5 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/boss_doomlord_kazzak.cpp.o
+#10 1479.2 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/boss_doomwalker.cpp.o
+#10 1480.0 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/outland_script_loader.cpp.o
+#10 1481.4 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_blades_edge_mountains.cpp.o
+#10 1482.0 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_hellfire_peninsula.cpp.o
+#10 1482.6 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_nagrand.cpp.o
+#10 1482.6 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_netherstorm.cpp.o
+#10 1485.5 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_shadowmoon_valley.cpp.o
+#10 1485.5 [ 90%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_shattrath_city.cpp.o
+#10 1488.2 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_terokkar_forest.cpp.o
+#10 1488.4 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/zone_zangarmarsh.cpp.o
+#10 1489.0 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/AuchenaiCrypts/boss_exarch_maladaar.cpp.o
+#10 1489.6 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/AuchenaiCrypts/boss_shirrak_the_dead_watcher.cpp.o
+#10 1492.0 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/AuchenaiCrypts/instance_auchenai_crypts.cpp.o
+#10 1492.3 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ManaTombs/boss_nexusprince_shaffar.cpp.o
+#10 1492.9 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ManaTombs/boss_pandemonius.cpp.o
+#10 1493.3 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ManaTombs/instance_mana_tombs.cpp.o
+#10 1495.8 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/SethekkHalls/boss_anzu.cpp.o
+#10 1495.8 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/SethekkHalls/boss_darkweaver_syth.cpp.o
+#10 1495.9 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/SethekkHalls/boss_talon_king_ikiss.cpp.o
+#10 1496.5 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/SethekkHalls/instance_sethekk_halls.cpp.o
+#10 1498.6 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ShadowLabyrinth/boss_ambassador_hellmaw.cpp.o
+#10 1498.8 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ShadowLabyrinth/boss_blackheart_the_inciter.cpp.o
+#10 1499.2 [ 91%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ShadowLabyrinth/boss_grandmaster_vorpil.cpp.o
+#10 1499.4 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ShadowLabyrinth/boss_murmur.cpp.o
+#10 1501.5 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ShadowLabyrinth/instance_shadow_labyrinth.cpp.o
+#10 1502.1 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/Auchindoun/ShadowLabyrinth/shadow_labyrinth.cpp.o
+#10 1502.3 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/black_temple.cpp.o
+#10 1502.8 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_gurtogg_bloodboil.cpp.o
+#10 1504.6 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_illidan.cpp.o
+#10 1505.3 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_illidari_council.cpp.o
+#10 1506.9 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_mother_shahraz.cpp.o
+#10 1507.0 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_reliquary_of_souls.cpp.o
+#10 1511.7 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_shade_of_akama.cpp.o
+#10 1512.9 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_supremus.cpp.o
+#10 1513.0 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_teron_gorefiend.cpp.o
+#10 1516.1 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/boss_warlord_najentus.cpp.o
+#10 1516.2 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/BlackTemple/instance_black_temple.cpp.o
+#10 1516.9 [ 92%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/boss_fathomlord_karathress.cpp.o
+#10 1518.2 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/boss_hydross_the_unstable.cpp.o
+#10 1519.4 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/boss_lady_vashj.cpp.o
+#10 1519.7 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/boss_leotheras_the_blind.cpp.o
+#10 1519.8 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/boss_lurker_below.cpp.o
+#10 1521.2 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/boss_morogrim_tidewalker.cpp.o
+#10 1522.6 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SerpentShrine/instance_serpent_shrine.cpp.o
+#10 1523.5 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SteamVault/boss_hydromancer_thespia.cpp.o
+#10 1523.6 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SteamVault/boss_mekgineer_steamrigger.cpp.o
+#10 1524.4 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SteamVault/boss_warlord_kalithresh.cpp.o
+#10 1526.2 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/SteamVault/instance_steam_vault.cpp.o
+#10 1526.4 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheSlavePens/boss_ahune.cpp.o
+#10 1527.2 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheSlavePens/boss_mennu_the_betrayer.cpp.o
+#10 1528.9 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheSlavePens/boss_quagmirran.cpp.o
+#10 1529.8 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheSlavePens/boss_rokmar_the_crackler.cpp.o
+#10 1531.8 [ 93%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheSlavePens/instance_the_slave_pens.cpp.o
+#10 1532.1 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheUnderbog/boss_hungarfen.cpp.o
+#10 1532.9 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheUnderbog/boss_the_black_stalker.cpp.o
+#10 1534.1 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/CoilfangReservoir/TheUnderbog/instance_the_underbog.cpp.o
+#10 1534.5 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/GruulsLair/boss_gruul.cpp.o
+#10 1534.5 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/GruulsLair/boss_high_king_maulgar.cpp.o
+#10 1535.6 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/GruulsLair/instance_gruuls_lair.cpp.o
+#10 1536.9 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/BloodFurnace/boss_broggok.cpp.o
+#10 1537.5 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/BloodFurnace/boss_kelidan_the_breaker.cpp.o
+#10 1538.1 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/BloodFurnace/boss_the_maker.cpp.o
+#10 1538.6 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/BloodFurnace/instance_blood_furnace.cpp.o
+#10 1540.5 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/HellfireRamparts/boss_omor_the_unscarred.cpp.o
+#10 1540.7 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/HellfireRamparts/boss_vazruden_the_herald.cpp.o
+#10 1540.8 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/HellfireRamparts/boss_watchkeeper_gargolmar.cpp.o
+#10 1541.6 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/HellfireRamparts/instance_hellfire_ramparts.cpp.o
+#10 1543.2 [ 94%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/MagtheridonsLair/boss_magtheridon.cpp.o
+#10 1543.6 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/MagtheridonsLair/instance_magtheridons_lair.cpp.o
+#10 1543.7 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/ShatteredHalls/boss_nethekurse.cpp.o
+#10 1544.4 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/ShatteredHalls/boss_warbringer_omrogg.cpp.o
+#10 1546.6 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/ShatteredHalls/boss_warchief_kargath_bladefist.cpp.o
+#10 1546.7 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/ShatteredHalls/instance_shattered_halls.cpp.o
+#10 1547.2 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/HellfireCitadel/ShatteredHalls/shattered_halls.cpp.o
+#10 1548.4 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Eye/boss_alar.cpp.o
+#10 1549.6 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Eye/boss_astromancer.cpp.o
+#10 1549.9 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Eye/boss_kaelthas.cpp.o
+#10 1551.2 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Eye/boss_void_reaver.cpp.o
+#10 1551.4 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Eye/instance_the_eye.cpp.o
+#10 1553.3 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Eye/the_eye.cpp.o
+#10 1554.0 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Mechanar/boss_gatewatcher_gyrokill.cpp.o
+#10 1554.3 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Mechanar/boss_gatewatcher_ironhand.cpp.o
+#10 1554.4 [ 95%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Mechanar/boss_mechano_lord_capacitus.cpp.o
+#10 1556.1 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Mechanar/boss_nethermancer_sepethrea.cpp.o
+#10 1556.8 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Mechanar/boss_pathaleon_the_calculator.cpp.o
+#10 1557.1 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/Mechanar/instance_mechanar.cpp.o
+#10 1558.2 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/arcatraz/arcatraz.cpp.o
+#10 1559.0 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/arcatraz/boss_dalliah_the_doomsayer.cpp.o
+#10 1559.6 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/arcatraz/boss_harbinger_skyriss.cpp.o
+#10 1559.9 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/arcatraz/boss_wrath_scryer_soccothrates.cpp.o
+#10 1561.2 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/arcatraz/boss_zereketh_the_unbound.cpp.o
+#10 1561.9 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/arcatraz/instance_arcatraz.cpp.o
+#10 1562.7 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/botanica/boss_commander_sarannis.cpp.o
+#10 1562.7 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/botanica/boss_high_botanist_freywinn.cpp.o
+#10 1564.1 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/botanica/boss_laj.cpp.o
+#10 1564.6 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/botanica/boss_thorngrin_the_tender.cpp.o
+#10 1565.6 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/botanica/boss_warp_splinter.cpp.o
+#10 1565.9 [ 96%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Outland/TempestKeep/botanica/instance_the_botanica.cpp.o
+#10 1566.8 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_dk.cpp.o
+#10 1567.5 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_generic.cpp.o
+#10 1568.7 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_hunter.cpp.o
+#10 1568.7 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_mage.cpp.o
+#10 1570.4 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_paladin.cpp.o
+#10 1570.7 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_priest.cpp.o
+#10 1571.6 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_script_loader.cpp.o
+#10 1572.7 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Pet/pet_shaman.cpp.o
+#10 1573.1 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_dk.cpp.o
+#10 1573.5 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_druid.cpp.o
+#10 1573.9 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_generic.cpp.o
+#10 1575.4 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_holiday.cpp.o
+#10 1587.7 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_hunter.cpp.o
+#10 1591.3 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_item.cpp.o
+#10 1595.2 [ 97%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_mage.cpp.o
+#10 1604.3 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_paladin.cpp.o
+#10 1612.2 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_pet.cpp.o
+#10 1615.0 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_priest.cpp.o
+#10 1620.9 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_quest.cpp.o
+#10 1626.6 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_rogue.cpp.o
+#10 1630.4 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_script_loader.cpp.o
+#10 1633.3 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_shaman.cpp.o
+#10 1635.1 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_warlock.cpp.o
+#10 1641.2 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/Spells/spell_warrior.cpp.o
+#10 1642.4 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/achievement_scripts.cpp.o
+#10 1645.7 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/action_ip_logger.cpp.o
+#10 1648.4 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/areatrigger_scripts.cpp.o
+#10 1651.8 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/chat_log.cpp.o
+#10 1653.4 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/duel_reset.cpp.o
+#10 1653.7 [ 98%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/go_scripts.cpp.o
+#10 1655.0 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/guards.cpp.o
+#10 1656.8 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/item_scripts.cpp.o
+#10 1658.0 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/mob_generic_creature.cpp.o
+#10 1659.3 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/npc_innkeeper.cpp.o
+#10 1659.8 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/npc_professions.cpp.o
+#10 1661.4 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/npcs_special.cpp.o
+#10 1662.2 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/world_map_scripts.cpp.o
+#10 1662.9 [ 99%] Building CXX object src/server/scripts/CMakeFiles/scripts.dir/World/world_script_loader.cpp.o
+#10 1671.5 [ 99%] Linking CXX static library libscripts.a
+#10 1812.4 [ 99%] Built target scripts
+#10 1812.4 [ 99%] Building CXX object src/server/worldserver/CMakeFiles/worldserver.dir/cmake_pch.hxx.gch
+#10 1817.1 [ 99%] Building CXX object src/server/worldserver/CMakeFiles/worldserver.dir/CommandLine/CliRunnable.cpp.o
+#10 1817.1 [ 99%] Building CXX object src/server/worldserver/CMakeFiles/worldserver.dir/Main.cpp.o
+#10 1817.1 [ 99%] Building CXX object src/server/worldserver/CMakeFiles/worldserver.dir/RemoteAccess/RASession.cpp.o
+#10 1817.1 [ 99%] Building CXX object src/server/worldserver/CMakeFiles/worldserver.dir/TCSoap/TCSoap.cpp.o
+#10 1834.4 [100%] Linking CXX executable worldserver
+#10 1923.5 [100%] Built target worldserver
+#10 1923.5 Consolidate compiler generated dependencies of target g3dlib
+#10 1923.6 [  3%] Built target g3dlib
+#10 1923.6 Consolidate compiler generated dependencies of target Detour
+#10 1923.6 [  3%] Built target Detour
+#10 1923.6 Consolidate compiler generated dependencies of target Recast
+#10 1923.6 [  4%] Built target Recast
+#10 1923.6 Consolidate compiler generated dependencies of target fmt
+#10 1923.7 [  4%] Built target fmt
+#10 1923.8 Consolidate compiler generated dependencies of target jemalloc
+#10 1923.8 [  9%] Built target jemalloc
+#10 1923.8 Consolidate compiler generated dependencies of target gsoap
+#10 1923.8 [  9%] Built target gsoap
+#10 1923.9 Consolidate compiler generated dependencies of target argon2
+#10 1923.9 [  9%] Built target argon2
+#10 1924.1 Consolidate compiler generated dependencies of target storm
+#10 1924.1 [ 22%] Built target storm
+#10 1924.2 [ 22%] Built target revision_data.h
+#10 1924.3 Consolidate compiler generated dependencies of target common
+#10 1924.3 [ 25%] Built target common
+#10 1924.4 Consolidate compiler generated dependencies of target database
+#10 1924.4 [ 27%] Built target database
+#10 1924.4 Consolidate compiler generated dependencies of target shared
+#10 1924.4 [ 28%] Built target shared
+#10 1924.5 Consolidate compiler generated dependencies of target authserver
+#10 1924.5 [ 29%] Built target authserver
+#10 1924.8 Consolidate compiler generated dependencies of target game
+#10 1924.9 [ 49%] Built target game
+#10 1925.2 Consolidate compiler generated dependencies of target scripts
+#10 1925.2 [ 98%] Built target scripts
+#10 1925.2 Consolidate compiler generated dependencies of target modules
+#10 1925.3 [ 98%] Built target modules
+#10 1925.3 Consolidate compiler generated dependencies of target worldserver
+#10 1925.3 [ 99%] Built target worldserver
+#10 1925.4 Consolidate compiler generated dependencies of target connection_patcher
+#10 1925.4 [ 99%] Built target connection_patcher
+#10 1925.4 Consolidate compiler generated dependencies of target mapextractor
+#10 1925.4 [ 99%] Built target mapextractor
+#10 1925.5 Consolidate compiler generated dependencies of target vmap4assembler
+#10 1925.5 [100%] Built target vmap4assembler
+#10 1925.5 Consolidate compiler generated dependencies of target vmap4extractor
+#10 1925.5 [100%] Built target vmap4extractor
+#10 1925.5 Consolidate compiler generated dependencies of target mmaps_generator
+#10 1925.6 [100%] Built target mmaps_generator
+#10 1925.6 Install the project...
+#10 1925.6 -- Install configuration: "RelWithDebInfo"
+#10 1925.6 -- Installing: /trinity/bin/authserver
+#10 1925.8 -- Set runtime path of "/trinity/bin/authserver" to "/trinity/lib"
+#10 1925.8 -- Installing: /trinity/etc/authserver.conf.dist
+#10 1925.8 -- Installing: /trinity/bin/worldserver

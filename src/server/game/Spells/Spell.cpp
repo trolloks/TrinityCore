@@ -3385,6 +3385,12 @@ SpellCastResult Spell::prepare(SpellCastTargets const& targets, AuraEffect const
 
     LoadScripts();
 
+    if (!sScriptMgr->CanPrepareAllSpell(this, &targets, triggeredByAura))
+    {
+        finish(false);
+        return SPELL_FAILED_DONT_REPORT;
+    }
+
     // Fill cost data (do not use power for item casts)
     m_powerCost = m_CastItem ? 0 : m_spellInfo->CalcPowerCost(m_caster, m_spellSchoolMask, this);
 
@@ -3509,6 +3515,9 @@ SpellCastResult Spell::prepare(SpellCastTargets const& targets, AuraEffect const
             cast(true);
     }
 
+    if (Unit* unitCaster = m_caster->ToUnit())
+        sScriptMgr->OnAllSpellPrepare(this, unitCaster, m_spellInfo);
+
     return SPELL_CAST_OK;
 }
 
@@ -3602,6 +3611,7 @@ void Spell::_cast(bool skipCheck)
         // now that we've done the basic check, now run the scripts
         // should be done before the spell is actually executed
         sScriptMgr->OnPlayerSpellCast(playerCaster, this, skipCheck);
+        sScriptMgr->OnAllSpellCast(this, playerCaster, m_spellInfo, skipCheck);
 
         // As of 3.0.2 pets begin attacking their owner's target immediately
         // Let any pets know we've attacked something. Check DmgClass for harmful spells only
@@ -6613,6 +6623,11 @@ SpellCastResult Spell::CheckCast(bool strict, uint32* param1 /*= nullptr*/, uint
                 return SPELL_FAILED_NO_COMBO_POINTS;
 
     // all ok
+    SpellCastResult hookResult = SPELL_CAST_OK;
+    sScriptMgr->OnAllSpellCheckCast(this, strict, hookResult);
+    if (hookResult != SPELL_CAST_OK)
+        return hookResult;
+
     return SPELL_CAST_OK;
 }
 

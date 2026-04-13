@@ -1,0 +1,5 @@
+mysql_data/
+sqldata/
+data/
+build/
+*.sql

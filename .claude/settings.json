@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT ID, Title FROM quest_template WHERE ID=24768\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM creature_queststarter WHERE id=39062\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM creature_questender WHERE id=39062\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM smart_scripts WHERE entryorguid=39062\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"DESCRIBE quest_template\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM creature_queststarter WHERE id=39062\" mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM creature_questender WHERE id=39062\" mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM smart_scripts WHERE entryorguid=39062\" mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT LogTitle FROM quest_template_locale WHERE ID=24768 LIMIT 1\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world -e \"SELECT * FROM quest_template WHERE ID=24768\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world --execute=\"SELECT * FROM creature_queststarter WHERE id=39062\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world --execute=\"SELECT * FROM creature_questender WHERE id=39062\")",
+      "Bash(mysql -u trinity -ptrinity -h 127.0.0.1 -P 3312 world --execute=\"SELECT * FROM smart_scripts WHERE entryorguid=39062 OR entryorguid=-39062\")",
+      "Bash(awk 'NR>=70 && NR<=85' /mnt/f79365ff-6a68-45da-925e-b9ddc6d5da6c/fun2/TrinityCore/sql/updates/world/4.3.4/2025_03_12_00_world.sql)",
+      "Read(//mnt/e1384d9e-bede-40dd-8b1c-be0beb488490/Fun/azerothcore-wotlk/src/server/game/Scripting/**)",
+      "Read(//mnt/e1384d9e-bede-40dd-8b1c-be0beb488490/Fun/azerothcore-wotlk/src/server/game/Scripting/ScriptDefines/**)",
+      "Read(//mnt/e1384d9e-bede-40dd-8b1c-be0beb488490/Fun/azerothcore-wotlk/**)"
+    ]
+  }
+}

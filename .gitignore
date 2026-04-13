@@ -1,4 +1,4 @@
-
+data/
 build*/
 .directory
 .mailmap
@@ -22,3 +22,14 @@ nbproject/*
 .vscode
 cmake-build-*/
 .vs
+
+mysql_data/
+sqldata/
+configs/
+TDB_full_hotfixes_434.22011_2022_01_09.sql
+TDB_full_world_434.22011_2022_01_09.sql
+Dockerfile
+docker-compose.yml
+README_DOCKER.md
+setup.sql
+
