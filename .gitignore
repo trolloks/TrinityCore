@@ -32,4 +32,31 @@ Dockerfile
 docker-compose.yml
 README_DOCKER.md
 setup.sql
+build.log
 
+
+#
+# AzerothCore Compat
+#
+
+/conf/*
+!/conf/dist
+/modules/*
+!/modules/*.md
+!/modules/*.sh
+!/modules/CMakeLists.txt
+!/modules/*.h
+!/modules/*.cmake
+/build*/
+/var/*
+!/var/build/.gitkeep
+!/var/ccache/.gitkeep
+/env/dist/*
+!/env/dist/.gitkeep
+/env/user/*
+/.env*
+/apps/joiner
+/deps/deno
+/data/sql/custom/*
+/src/server/scripts/Custom/*
+!/src/server/scripts/Custom/README.md
