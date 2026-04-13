@@ -20,6 +20,7 @@
 
 #include "Common.h"
 #include "DatabaseEnvFwd.h"
+#include "fmt/format.h"
 #include "ObjectGuid.h"
 #include "SharedDefines.h"
 #include "Tuples.h"
@@ -109,7 +110,26 @@ enum XPColorChar : uint8;
 #endif
 
 // Allow ACore modules to use Acore:: namespace as alias for Trinity::
-namespace Acore = Trinity;
+// AzerothCore compatibility namespace
+// Most symbols are the same as Trinity, but StringFormat uses fmt::format ({} style)
+// instead of fmt::sprintf (printf style) as ACore modules expect.
+namespace Acore
+{
+    using namespace Trinity;
+
+    template<typename Format, typename... Args>
+    inline std::string StringFormat(Format&& fmt, Args&&... args)
+    {
+        try
+        {
+            return fmt::format(std::forward<Format>(fmt), std::forward<Args>(args)...);
+        }
+        catch (const fmt::format_error& formatError)
+        {
+            return std::string("An error occurred formatting string: ") + formatError.what();
+        }
+    }
+}
 
 /*
     @todo Add more script type classes.
